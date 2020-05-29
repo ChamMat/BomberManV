@@ -1,24 +1,17 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './reset.css';
+
+// import Home from './components/Home/index';
+import Game from './components/Game/index';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <img className="background bleu" src="/image/background/country-platform-back.png" alt="fond bleu" />
+      <img className="background foret" src="/image/background/country-platform-forest.png" alt="fond foret" />
+      <img className="background chemin" src="/image/background/country-platform-tiles-example.png" alt="fond chemin" />
+      
+      <Game />
     </div>
   );
 }
