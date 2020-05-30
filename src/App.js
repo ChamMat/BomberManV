@@ -2,7 +2,7 @@ import React from 'react';
 import './reset.css';
 
 // import Home from './components/Home/index';
-import Game from './components/Game/index';
+import Game from './container/Game';
 
 function App() {
   return (

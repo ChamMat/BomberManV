@@ -3,9 +3,16 @@ import { DO_SOMETHING } from '../actions/demo';
 
 // Initial State
 const initialState = {
-  message: 'hello',
-  posX: 50,
-  posY: 50,
+  perso1: {
+    posX: 20,
+    posY: 80,
+    direction: 'right',
+  },
+  perso2: {
+    posX: 80,
+    posY: 80,
+    direction: 'left',
+  }
 };
 
 // Reducer
