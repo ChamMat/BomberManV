@@ -28,6 +28,15 @@ const StyledPerso = styled.div.attrs((props) => {
     .idle0 {
         background-image: url(/image/perso/sprite/idle/heroIdle00.png);
     }
+    .idle1 {
+        background-image: url(/image/perso/sprite/idle/heroIdle01.png);
+    }
+    .idle2 {
+        background-image: url(/image/perso/sprite/idle/heroIdle02.png);
+    }
+    .idle3 {
+        background-image: url(/image/perso/sprite/idle/heroIdle03.png);
+    }
 
     .perso {
         width:3vw;

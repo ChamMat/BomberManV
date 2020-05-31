@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 
 // Du composant qui a besoin de data ou d'actions
+import { majPersos } from 'actions/majPerso.js';
 import Game from 'components/Game/index';
 
 // == Data / state
@@ -8,14 +9,18 @@ import Game from 'components/Game/index';
 // On prépare un objet avec les props attendues par le composant
 const mapStateToProps = (state) => {
   return ({
-  perso1: state.perso.perso1,
-  perso2: state.perso.perso2,
+  persosLocal: state.perso.persosLocal,
+  persos: state.perso.persos,
 })};
 
 // == Actions / dispatch
 // Notre composant à besoin d'agir sur le state ?
 // On prépare un objet avec les props attendues par le composant
-const mapDispatchToProps = {};
+const mapDispatchToProps = (dispatch) => ({
+  maj: (persosLocal) => {
+    dispatch(majPersos(persosLocal));
+  },
+});
 
 // création du lien : container
 // connect(redux)(react) - connect(ce dont on a besoin)(qui en a besoin)
