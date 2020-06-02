@@ -1,3 +1,5 @@
+import platforms from 'datas/platforms';
+
 const gestionPersoLocal = (perso, keyInput) => {
     let {
         localId,
@@ -28,6 +30,7 @@ const gestionPersoLocal = (perso, keyInput) => {
 
     const vitesse = 1.2;
     const gravite = 4;
+    
 
     // MAJ des KEYS pour les joueurs locaux
     if (localId === 0) {
@@ -64,6 +67,7 @@ const gestionPersoLocal = (perso, keyInput) => {
         jump = true;
         idle = false;
         walk = false;
+        posY -= 5;
     }
 
 
@@ -157,6 +161,43 @@ const gestionPersoLocal = (perso, keyInput) => {
         }
     }
 
+    // Gestion des collisions des plateforms
+    chute = true;
+    jumpPower -= .7; 
+    if (jumpPower < 0) {
+        jumpPower = 0;
+    }
+
+    const playerHeight = 7;
+    const playerWidth = 3;
+    const playerFoot = posY + 7;
+
+    // console.log("PLAYER X= ", posX);
+    // console.log("PLAYERFOOT Y= ", playerFoot);
+    // console.log('--------------');
+
+    platforms.platforms.map((platform) => {
+        // console.log("PLATFORME: ", platform.id);
+        const platTop = parseInt(platform.top);
+        const platLeft = parseInt(platform.left);
+        const platHeight = parseInt(platform.height);
+        const platWidth = parseInt(platform.width);
+
+        // console.log('platform top: ', platTop);
+        // console.log(parseInt(platTop - 5));
+
+        if (posX > platLeft -2 && posX < platLeft + platWidth) {
+        //    console.log("posX: ", posX, " plus grand que ", platLeft, " plat left ", " et plus petit que plat left+ plat witdh", (platLeft + platWidth));
+           if (playerFoot > platTop -2 && playerFoot < parseInt(platTop + platHeight+2)) {
+               chute = false;
+               posY = platTop + platHeight - 7;
+                // console.log("playerFoot: ", playerFoot, " plus petit que ", platTop, " platTop ", " et plus grand que platTop + 5", (parseInt(platTop - 5)));
+           }
+        }
+
+        // console.log('---------');
+    });
+
     // Gestion des collisions en sortie de cadre
         //Gauche
     if (posX < 2) {
@@ -167,15 +208,9 @@ const gestionPersoLocal = (perso, keyInput) => {
         posX = 95;
     }
 
-    // Gestion des chutes
-
-    jumpPower -= .7; 
-    if (jumpPower < 0) {
-        jumpPower = 0;
+    if (chute) {
+        posY += gravite - jumpPower;
     }
-
-    posY += gravite - jumpPower;
-    chute = true;
 
     if (posY > 80) {
         posY = 80;

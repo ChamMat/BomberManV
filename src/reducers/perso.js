@@ -7,7 +7,7 @@ const initialState = {
     {
       localId:0,
       posX: 20,
-      posY: 80,
+      posY: 20,
       direction: 'right',
       idle: true,
       walk: false,
@@ -26,8 +26,8 @@ const initialState = {
     },
     {
       localId:1,
-      posX: 30,
-      posY: 80,
+      posX: 50,
+      posY: 20,
       direction: 'right',
       idle: true,
       walk: false,

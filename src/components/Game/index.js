@@ -6,7 +6,6 @@ import useInterval from 'functions/useInterval';
 import gestionPersoLocal from 'functions/gestionPersoLocal';
 
 import Perso from './Perso';
-import { createPortal } from 'react-dom';
 
 
 
@@ -117,6 +116,10 @@ const Game = (props) => {
 
 
     useInterval(() => {
+        if (props.keyInput.p1Bomb) {
+            return false;
+        }
+        // console.log("=========NEW TILT============");
         // Interval de temps. C'est ici que la boucle logique s'effectue.
 
         //=======================MAJ des perso======================
@@ -124,6 +127,7 @@ const Game = (props) => {
         // Ce sont ces valeurs qui sont transmises au reducer de redux.
         const majPerso = [];
         Object.values(persosLocal).forEach(perso => {
+            // console.log('JOUEUR: ', perso.localId);
             majPerso.push(gestionPersoLocal(perso, props.keyInput))
         });
         maj(majPerso);
