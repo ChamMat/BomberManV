@@ -20,11 +20,12 @@ const Game = (props) => {
         let key;
         let value;
 
+
         switch (evt.code) {
             case 'ArrowUp':
-                key = 'p1Up';
-                value = true;
-                newKeyInput(key, value);
+                    key = 'p1Up';
+                    value = true;
+                    newKeyInput(key, value);
             break;
             case 'ArrowLeft':
                 key = 'p1Left';
@@ -130,9 +131,10 @@ const Game = (props) => {
             // console.log('JOUEUR: ', perso.localId);
             majPerso.push(gestionPersoLocal(perso, props.keyInput))
         });
+
         maj(majPerso);
 
-    }, 50); // ==============> nombre de miliseconde entre chaque frame (ideal 100)
+    }, 25); // ==============> nombre de miliseconde entre chaque frame (ideal 100)
 
     useEffect(() => {
         document.addEventListener('keydown', handleKeyDown);

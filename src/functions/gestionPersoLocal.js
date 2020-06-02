@@ -14,6 +14,7 @@ const gestionPersoLocal = (perso, keyInput) => {
         tempo,
         jumpPower,
         chute,
+        repos,
         keys,
     } = perso;
 
@@ -28,8 +29,8 @@ const gestionPersoLocal = (perso, keyInput) => {
         p2Bomb,
     } = keyInput;
 
-    const vitesse = 1.2;
-    const gravite = 4;
+    const vitesse = .7;
+    const gravite = 2;
     
 
     // MAJ des KEYS pour les joueurs locaux
@@ -49,12 +50,23 @@ const gestionPersoLocal = (perso, keyInput) => {
         };
     }
 
-    const {
+    let {
         up,
         left,
         right,
         bomb,
     } = keys
+
+    if (!up) {
+        repos = true;
+    }else {
+        if (repos){
+            up = true;
+        }else {
+            up = false;
+        }
+        repos = false;
+    }
 
     if (!up && !left && !right && jumpPower === 0) {
         idle = true;
@@ -63,11 +75,11 @@ const gestionPersoLocal = (perso, keyInput) => {
     }
 
     if (up && jumpPower === 0 && !chute) {
-        jumpPower = 9;
+        jumpPower = 5;
         jump = true;
         idle = false;
         walk = false;
-        posY -= 5;
+        posY -= 2.6;
     }
 
 
@@ -98,43 +110,44 @@ const gestionPersoLocal = (perso, keyInput) => {
         // Si le perso était en train de sauter ou de marcher, C'est l'idle0 qui est séléctionné
         switch(idleImg) {
             case 'idle0':
-                if (tempo === 0){
-                    idleImg = 'idle1';
-                    tempo += 1;
-                }else{
+                if (tempo >= 4){
                     tempo = 0;
+                    idleImg = 'idle1';
+                }else{
+                    tempo += 1;
                 }
                 // console.log("idle1")
                 break;
             case 'idle1':
-                if (tempo === 0){
+                if (tempo >= 4){
                     idleImg = 'idle2';
-                    tempo += 1;
-                }else{
                     tempo = 0;
+                }else{
+                    tempo += 1;
                 }
                 // console.log("idle2")
                 break;
             case 'idle2':
-                if (tempo === 0){
+                if (tempo >= 4){
                     idleImg = 'idle3';
-                    tempo += 1;
-                }else{
                     tempo = 0;
+                }else{
+                    tempo += 1;
                 }
                 // console.log("idle3")
                 break;
             case 'idle3':
-                if (tempo === 0){
+                if (tempo >= 4){
                     idleImg = 'idle0';
-                    tempo += 1;
-                }else{
                     tempo = 0;
+                }else{
+                    tempo += 1;
                 }
                 // console.log("idle4")
                 break;
             default:
                 idleImg='idle0';
+                tempo = 0;
         }
         //La temporisation sert à ne changer l'image de l'idle que tout les deux frame
     }
@@ -142,40 +155,66 @@ const gestionPersoLocal = (perso, keyInput) => {
     if (walk) {
         switch (walkImg) {
             case 'walk0':
-                walkImg = 'walk1';
+                if (tempo >= 2)
+                {
+                    walkImg = 'walk1';
+                    tempo = 0;
+                } else {
+                    tempo +=1;
+                }
             break;
             case 'walk1':
-                walkImg = 'walk2';
+                if (tempo >= 2)
+                {
+                    walkImg = 'walk2';
+                    tempo = 0;
+                } else {
+                    tempo +=1;
+                }
             break;
             case 'walk2':
-                walkImg = 'walk3';
+                if (tempo >= 2)
+                {
+                    walkImg = 'walk3';
+                    tempo = 0;
+                } else {
+                    tempo +=1;
+                }
             break;
             case 'walk3':
-                walkImg = 'walk4';
+                if (tempo >= 2)
+                {
+                    walkImg = 'walk4';
+                    tempo = 0;
+                } else {
+                    tempo +=1;
+                }
             break;
             case 'walk4':
-                walkImg = 'walk5';
+                if (tempo >= 2)
+                {
+                    walkImg = 'walk0';
+                    tempo = 0;
+                } else {
+                    tempo +=1;
+                }
             break;
             default:
                 walkImg = 'walk0';
+                tempo = 0;
         }
     }
 
-    // Gestion des collisions des plateforms
+   
     chute = true;
-    jumpPower -= .7; 
+    jumpPower -= .3; 
     if (jumpPower < 0) {
         jumpPower = 0;
     }
-
     const playerHeight = 7;
     const playerWidth = 3;
-    const playerFoot = posY + 7;
-
-    // console.log("PLAYER X= ", posX);
-    // console.log("PLAYERFOOT Y= ", playerFoot);
-    // console.log('--------------');
-
+    const playerFoot = posY + 5;
+ // ################# Gestion des collisions des plateforms
     platforms.platforms.map((platform) => {
         // console.log("PLATFORME: ", platform.id);
         const platTop = parseInt(platform.top);
@@ -186,16 +225,19 @@ const gestionPersoLocal = (perso, keyInput) => {
         // console.log('platform top: ', platTop);
         // console.log(parseInt(platTop - 5));
 
-        if (posX > platLeft -2 && posX < platLeft + platWidth) {
-        //    console.log("posX: ", posX, " plus grand que ", platLeft, " plat left ", " et plus petit que plat left+ plat witdh", (platLeft + platWidth));
-           if (playerFoot > platTop -2 && playerFoot < parseInt(platTop + platHeight+2)) {
+        if (posX > platLeft -2.3 && posX < platLeft + platWidth -.3) {
+           if (playerFoot > platTop -1 && playerFoot -1 < parseInt(platTop) + parseInt(platHeight)) {
                chute = false;
+               jumpPower = 0;
                posY = platTop + platHeight - 7;
-                // console.log("playerFoot: ", playerFoot, " plus petit que ", platTop, " platTop ", " et plus grand que platTop + 5", (parseInt(platTop - 5)));
            }
-        }
+           if (posY >= platTop && posY <= parseInt(platTop) + parseInt(platHeight)){
+               if (jumpPower >= 2.5) {
+                   jumpPower = 2.5;
+               }
+           }
 
-        // console.log('---------');
+        }
     });
 
     // Gestion des collisions en sortie de cadre
@@ -212,10 +254,7 @@ const gestionPersoLocal = (perso, keyInput) => {
         posY += gravite - jumpPower;
     }
 
-    if (posY > 80) {
-        posY = 80;
-        chute = false;
-    }
+
     
     return {
         localId,
@@ -230,6 +269,7 @@ const gestionPersoLocal = (perso, keyInput) => {
         tempo,
         jumpPower,
         chute,
+        repos,
         keys,
     };
 };

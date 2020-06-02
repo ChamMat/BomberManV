@@ -6,8 +6,8 @@ const initialState = {
   persosLocal: [
     {
       localId:0,
-      posX: 20,
-      posY: 20,
+      posX: 0,
+      posY: 0,
       direction: 'right',
       idle: true,
       walk: false,
@@ -17,6 +17,7 @@ const initialState = {
       tempo:0,
       jumpPower: 0,
       chute: false,
+      repos: true,
       keys: {
         up: false,
         left: false,
@@ -26,8 +27,8 @@ const initialState = {
     },
     {
       localId:1,
-      posX: 50,
-      posY: 20,
+      posX: 100,
+      posY: 0,
       direction: 'right',
       idle: true,
       walk: false,
@@ -37,6 +38,7 @@ const initialState = {
       tempo:0,
       jumpPower: 0,
       chute: false,
+      repos: true,
       keys: {
         up: false,
         left: false,
