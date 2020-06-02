@@ -15,6 +15,8 @@ const initialState = {
       idleImg: 'idle0',
       walkImg: 'walk0',
       tempo:0,
+      jumpPower: 0,
+      chute: false,
       keys: {
         up: false,
         left: false,
@@ -33,6 +35,8 @@ const initialState = {
       idleImg: 'idle0',
       walkImg: 'walk0',
       tempo:0,
+      jumpPower: 0,
+      chute: false,
       keys: {
         up: false,
         left: false,

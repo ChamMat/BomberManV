@@ -10,6 +10,8 @@ const gestionPersoLocal = (perso, keyInput) => {
         idleImg,
         walkImg,
         tempo,
+        jumpPower,
+        chute,
         keys,
     } = perso;
 
@@ -25,7 +27,9 @@ const gestionPersoLocal = (perso, keyInput) => {
     } = keyInput;
 
     const vitesse = 1.2;
+    const gravite = 4;
 
+    // MAJ des KEYS pour les joueurs locaux
     if (localId === 0) {
         keys = {
             up: p1Up,
@@ -49,15 +53,30 @@ const gestionPersoLocal = (perso, keyInput) => {
         bomb,
     } = keys
 
-    if (!up && !left && !right) {
+    if (!up && !left && !right && jumpPower === 0) {
         idle = true;
         walk = false;
+        jump = false;
     }
+
+    if (up && jumpPower === 0 && !chute) {
+        jumpPower = 9;
+        jump = true;
+        idle = false;
+        walk = false;
+    }
+
 
     // Si gauche ou droite: WALK
     if (left || right) {
         idle = false;
+        if (jumpPower === 0) {
         walk = true;
+        jump = false;
+        } else {
+            walk = false;
+            jump = true;
+        }
         if (left) {
             direction = 'left';
             posX -= vitesse;
@@ -67,6 +86,7 @@ const gestionPersoLocal = (perso, keyInput) => {
             posX += vitesse;
         }
     }
+
 
     // Gestion de l'animation de l'idle
     if (idle) {
@@ -146,6 +166,21 @@ const gestionPersoLocal = (perso, keyInput) => {
     if (posX > 95) {
         posX = 95;
     }
+
+    // Gestion des chutes
+
+    jumpPower -= .7; 
+    if (jumpPower < 0) {
+        jumpPower = 0;
+    }
+
+    posY += gravite - jumpPower;
+    chute = true;
+
+    if (posY > 80) {
+        posY = 80;
+        chute = false;
+    }
     
     return {
         localId,
@@ -158,6 +193,8 @@ const gestionPersoLocal = (perso, keyInput) => {
         idleImg,
         walkImg,
         tempo,
+        jumpPower,
+        chute,
         keys,
     };
 };
