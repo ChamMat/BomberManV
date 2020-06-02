@@ -31,7 +31,7 @@ const Perso = (props) => {
 
             {
                 jump &&
-                <div className={`perso jumpImg`} />
+                <div className={`perso jump`} />
             }
         </StyledPerso>
     )

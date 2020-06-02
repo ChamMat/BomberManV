@@ -38,6 +38,31 @@ const StyledPerso = styled.div.attrs((props) => {
         background-image: url(/image/perso/sprite/idle/heroIdle03.png);
     }
 
+    .walk0 {
+        background-image: url(/image/perso/sprite/walk/heroWalk00.png);
+    }
+    .walk1 {
+        background-image: url(/image/perso/sprite/walk/heroWalk01.png);
+    }
+    .walk2 {
+        background-image: url(/image/perso/sprite/walk/heroWalk02.png);
+    }
+    .walk3 {
+        background-image: url(/image/perso/sprite/walk/heroWalk03.png);
+    }
+    .walk4 {
+        background-image: url(/image/perso/sprite/walk/heroWalk04.png);
+    }
+    .walk5 {
+        background-image: url(/image/perso/sprite/walk/heroWalk05.png);
+    }
+
+    .jump {
+        background-image: url(/image/perso/sprite/walk/heroWalk01.png);
+    }
+
+
+
     .perso {
         width:3vw;
         height:7vh;

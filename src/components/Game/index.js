@@ -6,40 +6,114 @@ import useInterval from 'functions/useInterval';
 import gestionPersoLocal from 'functions/gestionPersoLocal';
 
 import Perso from './Perso';
+import { createPortal } from 'react-dom';
 
-const handleKeyDown = (evt) => {
-    // switch(evt.code){
-    //     case 'ArrowUp':
-    //         p1Up = true;
-    //     break;
-    // }
-    console.log("keydown");
-};
 
-const handleKeyUp = (evt) => {
-    // switch(evt.code){
-    //     case 'ArrowUp':
-    //         p1Up = false;
-    //     break;
-    // }
-};
 
 const Game = (props) => {
     const {
         persosLocal,
-        persos,
         maj,
+        newKeyInput,
     } = props;
 
-    let p1Up;
-    let p1Left;
-    let p1right;
-    let p1Bomb;
+    const handleKeyDown = (evt) => {
+        let key;
+        let value;
 
-    let p2Up;
-    let p2Left;
-    let p2right;
-    let p2Bomb;
+        switch (evt.code) {
+            case 'ArrowUp':
+                key = 'p1Up';
+                value = true;
+                newKeyInput(key, value);
+            break;
+            case 'ArrowLeft':
+                key = 'p1Left';
+                value = true;
+                newKeyInput(key, value);
+            break;
+            case 'ArrowRight':
+                key = 'p1Right';
+                value = true;
+                newKeyInput(key, value);
+            break;
+            case 'KeyP':
+                key = 'p1Bomb';
+                value = true;
+                newKeyInput(key, value);
+            break;
+            case 'KeyR':
+                key = 'p2Up';
+                value = true;
+                newKeyInput(key, value);
+            break;
+            case 'KeyD':
+                key = 'p2Left';
+                value = true;
+                newKeyInput(key, value);
+            break;
+            case 'KeyG':
+                key = 'p2Right';
+                value = true;
+                newKeyInput(key, value);
+            break;
+            case 'KeyA':
+                key = 'p2Bomb';
+                value = true;
+                newKeyInput(key, value);
+            break;
+            default:
+        }
+    };
+    
+    const handleKeyUp = (evt) => {
+        let key;
+        let value;
+
+        switch (evt.code) {
+            case 'ArrowUp':
+                key = 'p1Up';
+                value = false;
+                newKeyInput(key, value);
+            break;
+            case 'ArrowLeft':
+                key = 'p1Left';
+                value = false;
+                newKeyInput(key, value);
+            break;
+            case 'ArrowRight':
+                key = 'p1Right';
+                value = false;
+                newKeyInput(key, value);
+            break;
+            case 'KeyP':
+                key = 'p1Bomb';
+                value = false;
+                newKeyInput(key, value);
+            break;
+            case 'KeyR':
+                key = 'p2Up';
+                value = false;
+                newKeyInput(key, value);
+            break;
+            case 'KeyD':
+                key = 'p2Left';
+                value = false;
+                newKeyInput(key, value);
+            break;
+            case 'KeyG':
+                key = 'p2Right';
+                value = false;
+                newKeyInput(key, value);
+            break;
+            case 'KeyA':
+                key = 'p2Bomb';
+                value = false;
+                newKeyInput(key, value);
+            break;
+            default:
+        }
+    };
 
 
     useInterval(() => {
@@ -50,33 +124,23 @@ const Game = (props) => {
         // Ce sont ces valeurs qui sont transmises au reducer de redux.
         const majPerso = [];
         Object.values(persosLocal).forEach(perso => {
-            majPerso.push(gestionPersoLocal(perso))
+            majPerso.push(gestionPersoLocal(perso, props.keyInput))
         });
         maj(majPerso);
 
-    }, 1000); // ==============> nombre de miliseconde entre chaque frame        
+    }, 50); // ==============> nombre de miliseconde entre chaque frame (ideal 100)
 
     useEffect(() => {
         document.addEventListener('keydown', handleKeyDown);
         document.addEventListener('keyup', handleKeyUp);
       },[]);
 
-
     return (
         <StyledGame>
-            {   // On affiche d'abord les perso locaux
+            {   // On affiche les persos
                 persosLocal.map((perso)=>(
                     <Perso
-                        key={perso.id}
-                        datas={perso}
-                    />
-                ))
-            }
-
-            {   // Ensuite, on affiche les perso 'exterieur'
-                persos.map((perso)=>(
-                    <Perso
-                        key={perso.id}
+                        key={perso.localId}
                         datas={perso}
                     />
                 ))

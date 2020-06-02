@@ -1,8 +1,10 @@
 import { connect } from 'react-redux';
 
 // Du composant qui a besoin de data ou d'actions
-import { majPersos } from 'actions/majPerso.js';
+import { majPersos } from 'actions/majPerso';
+import { changeInput } from 'actions/keyInput'
 import Game from 'components/Game/index';
+
 
 // == Data / state
 // Notre composant à besoin de données depuis le state ?
@@ -10,7 +12,7 @@ import Game from 'components/Game/index';
 const mapStateToProps = (state) => {
   return ({
   persosLocal: state.perso.persosLocal,
-  persos: state.perso.persos,
+  keyInput: state.keysInput,
 })};
 
 // == Actions / dispatch
@@ -19,6 +21,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   maj: (persosLocal) => {
     dispatch(majPersos(persosLocal));
+  },
+  newKeyInput: (key, value) => {
+    dispatch(changeInput(key, value));
   },
 });
 

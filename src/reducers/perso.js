@@ -5,7 +5,7 @@ import { MAJ_PERSOS } from '../actions/majPerso';
 const initialState = {
   persosLocal: [
     {
-      id:1,
+      localId:0,
       posX: 20,
       posY: 80,
       direction: 'right',
@@ -15,9 +15,15 @@ const initialState = {
       idleImg: 'idle0',
       walkImg: 'walk0',
       tempo:0,
+      keys: {
+        up: false,
+        left: false,
+        right: false,
+        bomb: false,
+      }
     },
     {
-      id:2,
+      localId:1,
       posX: 30,
       posY: 80,
       direction: 'right',
@@ -27,34 +33,14 @@ const initialState = {
       idleImg: 'idle0',
       walkImg: 'walk0',
       tempo:0,
+      keys: {
+        up: false,
+        left: false,
+        right: false,
+        bomb: false,
+      }
     }
   ],
-  persos: [
-    {
-      id:3,
-      posX: 80,
-      posY: 80,
-      direction: 'left',
-      idle: true,
-      walk: false,
-      jump: false,
-      idleImg: 'idle0',
-      walkImg: 'walk0',
-      tempo:0,
-    },
-    {
-      id:4,
-      posX: 70,
-      posY: 80,
-      direction: 'left',
-      idle: true,
-      walk: false,
-      jump: false,
-      idleImg: 'idle0',
-      walkImg: 'walk0',
-      tempo:0,
-    }
-  ]
 };
 
 // Reducer
@@ -65,10 +51,14 @@ const persoReducer = (state = initialState, action = {}) => {
         ...state,
         persosLocal: action.persosLocal,
       };
-
     default:
       return state;
   }
 };
 
 export default persoReducer;
+
+// contents: state.contents.map(
+//   (content, i) => i === 1 ? {...content, text: action.payload}
+//                           : content
+// )
