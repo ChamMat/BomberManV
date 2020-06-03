@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 // Du composant qui a besoin de data ou d'actions
 import { majPersos } from 'actions/majPerso';
 import { changeInput } from 'actions/keyInput'
-import { setNewBomb } from 'actions/bomb';
+import { setNewBomb, majBomb } from 'actions/bomb';
 import Game from 'components/Game/index';
 
 
@@ -29,6 +29,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   newBomb: (value) => {
     dispatch(setNewBomb(value))
+  },
+  reducerMajBomb: (newTab) => {
+    dispatch(majBomb(newTab))
   }
 });
 

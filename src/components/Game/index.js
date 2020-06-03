@@ -17,6 +17,7 @@ const Game = (props) => {
         bombes,
         newKeyInput,
         newBomb,
+        reducerMajBomb,
     } = props;
 
     const handleKeyDown = (evt) => {
@@ -122,6 +123,37 @@ const Game = (props) => {
     useInterval(() => {
         // console.log("=========NEW TILT============");
         // Interval de temps. C'est ici que la boucle logique s'effectue.
+
+
+        const majBomb = [];
+
+        bombes.bombes.map((bombe) => {
+            // Ici notre logique des bombes:
+            let {
+                posX,
+                posY,
+                timerBombe,
+            } = bombe;
+
+            
+            // Maj du timer
+            timerBombe -= 40;
+            if (timerBombe <= 0) {
+                timerBombe = 0;
+            }
+
+            if (timerBombe !== 0 ){
+            majBomb.push({
+                posX,
+                posY,
+                timerBombe,
+            });
+            }
+
+        });
+
+        reducerMajBomb(majBomb);
+        
 
         //=======================MAJ des perso======================
         // Pour chaque personnage, on créé un objet "image" avec les valeurs mise à jours.
