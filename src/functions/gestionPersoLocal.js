@@ -1,5 +1,7 @@
 import platforms from 'datas/platforms';
 
+import majKeyLocal from './gestionPersoLocal/majKeyLocal';
+
 const gestionPersoLocal = (perso, keyInput, newBomb) => {
     let {
         localId,
@@ -20,61 +22,60 @@ const gestionPersoLocal = (perso, keyInput, newBomb) => {
         playerBomb,
     } = perso;
 
-    const {
-        p1Up,
-        p1Left,
-        p1Right,
-        p1Bomb,
-        p2Up,
-        p2Left,
-        p2Right,
-        p2Bomb,
-    } = keyInput;
-
     const vitesse = .7;
     const gravite = 2;
     
 
-    // MAJ des KEYS pour les joueurs locaux
-    if (localId === 0) {
-        keys = {
-            up: p1Up,
-            left: p1Left,
-            right: p1Right,
-            bomb: p1Bomb,
-        };
-    } else if (localId === 1) {
-        keys = {
-            up: p2Up,
-            left: p2Left,
-            right: p2Right,
-            bomb: p2Bomb,
-        };
-    }
+    // -------------MAJ des KEYS pour les joueurs locaux-------------------
 
     let {
         up,
         left,
         right,
         bomb,
-    } = keys
+    } = majKeyLocal(localId, keyInput)
 
-    if (!up) {
-        repos = true;
-    }else {
-        if (repos){
-            up = true;
-        }else {
-            up = false;
-        }
-        repos = false;
-    }
+    // ---------------GESTION DES ETATS------------------
 
+
+
+        // --------------- GESTION DE L'IDLE (état statique)----------------
     if (!up && !left && !right && jumpPower === 0) {
         idle = true;
         walk = false;
         jump = false;
     }
+
+    // ---------------- GESTION DU SAUT
+
+        // ---- Getion du repos de saut
+
+        // La notion de repos sert à éviter l'effet de ressort. Cad que le joueur est obligé
+        // de lacher le bouton de saut pour pouvoir rééfectuer un 2eme saut.
+    if (!up) {
+        // Si le joueur n'appui pas sur le bouton de saut, repos passe à true.
+        repos = true;
+    }else {
+        // Du coup, si le joueur veut sauter, il ne peut le faire que si repos est à true
+        if (repos){
+            up = true;
+        }else {
+            up = false;
+        }
+        // Dés que le joueur à effectué un saut, repos passe à false. Le joueur devra relacher le bouton pour remetttre
+        // la variable repos à true.
+        repos = false;
+    }
+        
+        // ----- Gestion du saut:
+
+        // Le joueur qui chute est soumis à la gravité et tombe de posY + gravité à chaque tilt (gravité définir L37)
+        // Lorsque celui ci veut effectuer un saut, il "tombe" de posY + gravité - jumpPower.
+
+        // Du coup, si le joueur veut effectuer un saut, il doit impérativement remplir ces condition:
+        // il ne doit pas être en train de chuter, JumpPower doit impérativement être à 0
+
+        // Concrétement, le joueur ne peu sauter que dans le cas où il est a terre.
 
     if (up && jumpPower === 0 && !chute) {
         jumpPower = 5;
@@ -85,9 +86,11 @@ const gestionPersoLocal = (perso, keyInput, newBomb) => {
     }
 
 
-    // Si gauche ou droite: WALK
+    // -------------------GESTION DES DEPLACEMENT
+
     if (left || right) {
         idle = false;
+        // Si le personnage n'est pas en train de sauter, mettre l'animation de marche sinon mettre l'animation de saut
         if (jumpPower === 0) {
         walk = true;
         jump = false;
@@ -95,6 +98,7 @@ const gestionPersoLocal = (perso, keyInput, newBomb) => {
             walk = false;
             jump = true;
         }
+        // Le personnage peut tout de même se déplacer même si il est en train de sauter.
         if (left) {
             direction = 'left';
             posX -= vitesse;
@@ -106,7 +110,7 @@ const gestionPersoLocal = (perso, keyInput, newBomb) => {
     }
 
 
-    // Gestion de l'animation de l'idle
+    // ----------------Gestion de l'animation de l'idle et de la marche-----------------
     if (idle) {
         // Selection de l'image en fonction de la dernière selectionné.
         // Si le perso était en train de sauter ou de marcher, C'est l'idle0 qui est séléctionné
@@ -207,6 +211,13 @@ const gestionPersoLocal = (perso, keyInput, newBomb) => {
         }
     }
 
+    // ----------------Gestion de la pose de nouvelle bombe
+
+        // repos bombe fonctionne sur le même principe que le repos pour les saut.
+        // Permet d'éviter au joueur de poser 50 bombe par seconde en l'obligeant à lacher le bouton de pose de bombe
+
+
+        // note: bomb est le boolean de la touche pour poser une bombe
     if (bomb && reposBombe) {
         reposBombe = false;
         const timerBombe = playerBomb.timer;
@@ -221,28 +232,36 @@ const gestionPersoLocal = (perso, keyInput, newBomb) => {
         reposBombe = true;
     }
 
-   
+   // Par default le joueur est toujours en train de chuter.
+   // On annule la chute seulement si le perso est sur une plateforme
+
     chute = true;
+
+    // JumpPower perd de la puissance à chaque tilt.
+    // il ne peut pas devenir négatif.
     jumpPower -= .3; 
     if (jumpPower < 0) {
         jumpPower = 0;
     }
-    const playerHeight = 7;
-    const playerWidth = 3;
+
     const playerFoot = posY + 5;
 
  // ################# Gestion des collisions des plateforms
+
+    // --------- On répète cette algo pour chaque plateforme.
+
     platforms.platforms.map((platform) => {
-        // console.log("PLATFORME: ", platform.id);
         const platTop = parseInt(platform.top);
         const platLeft = parseInt(platform.left);
         const platHeight = parseInt(platform.height);
         const platWidth = parseInt(platform.width);
 
-        // console.log('platform top: ', platTop);
-        // console.log(parseInt(platTop - 5));
 
+        // D'abord on regarde si le personnage est sur une plateforme en X
         if (posX > platLeft -2.3 && posX < platLeft + platWidth -.3) {
+
+            // Si le personnage est au dessu ou en dessou d'une plateforme, on regarde si est en dessous ou au dessus
+
            if (playerFoot > platTop -1 && playerFoot -1 < parseInt(platTop) + parseInt(platHeight)) {
                // Ici, on est sur une plateform
                chute = false;
@@ -252,6 +271,7 @@ const gestionPersoLocal = (perso, keyInput, newBomb) => {
            }
            if (posY >= platTop && posY <= parseInt(platTop) + parseInt(platHeight)){
                // ici la tête du perso tape une plateforme
+               // On ne mêt pas jumpPower à 0 pour éviter une chute trop brutal
                if (jumpPower >= 2.5) {
                    jumpPower = 2.5;
                }
@@ -270,6 +290,7 @@ const gestionPersoLocal = (perso, keyInput, newBomb) => {
         posX = 95;
     }
 
+    // ---------- GESTION DE LA CHUTE
     if (chute) {
         posY += gravite - jumpPower;
     }
