@@ -6,6 +6,7 @@ import useInterval from 'functions/useInterval';
 import gestionPersoLocal from 'functions/gestionPersoLocal';
 
 import Perso from './Perso';
+import Bombes from './Bombes';
 
 
 
@@ -13,7 +14,9 @@ const Game = (props) => {
     const {
         persosLocal,
         maj,
+        bombes,
         newKeyInput,
+        newBomb,
     } = props;
 
     const handleKeyDown = (evt) => {
@@ -37,27 +40,27 @@ const Game = (props) => {
                 value = true;
                 newKeyInput(key, value);
             break;
-            case 'KeyP':
+            case 'ArrowDown':
                 key = 'p1Bomb';
                 value = true;
                 newKeyInput(key, value);
             break;
-            case 'KeyR':
+            case 'KeyW':
                 key = 'p2Up';
                 value = true;
                 newKeyInput(key, value);
             break;
-            case 'KeyD':
+            case 'KeyA':
                 key = 'p2Left';
                 value = true;
                 newKeyInput(key, value);
             break;
-            case 'KeyG':
+            case 'KeyD':
                 key = 'p2Right';
                 value = true;
                 newKeyInput(key, value);
             break;
-            case 'KeyA':
+            case 'KeyS':
                 key = 'p2Bomb';
                 value = true;
                 newKeyInput(key, value);
@@ -86,27 +89,27 @@ const Game = (props) => {
                 value = false;
                 newKeyInput(key, value);
             break;
-            case 'KeyP':
+            case 'ArrowDown':
                 key = 'p1Bomb';
                 value = false;
                 newKeyInput(key, value);
             break;
-            case 'KeyR':
+            case 'KeyW':
                 key = 'p2Up';
                 value = false;
                 newKeyInput(key, value);
             break;
-            case 'KeyD':
+            case 'KeyA':
                 key = 'p2Left';
                 value = false;
                 newKeyInput(key, value);
             break;
-            case 'KeyG':
+            case 'KeyD':
                 key = 'p2Right';
                 value = false;
                 newKeyInput(key, value);
             break;
-            case 'KeyA':
+            case 'KeyS':
                 key = 'p2Bomb';
                 value = false;
                 newKeyInput(key, value);
@@ -117,9 +120,6 @@ const Game = (props) => {
 
 
     useInterval(() => {
-        if (props.keyInput.p1Bomb) {
-            return false;
-        }
         // console.log("=========NEW TILT============");
         // Interval de temps. C'est ici que la boucle logique s'effectue.
 
@@ -129,7 +129,7 @@ const Game = (props) => {
         const majPerso = [];
         Object.values(persosLocal).forEach(perso => {
             // console.log('JOUEUR: ', perso.localId);
-            majPerso.push(gestionPersoLocal(perso, props.keyInput))
+            majPerso.push(gestionPersoLocal(perso, props.keyInput, newBomb))
         });
 
         maj(majPerso);
@@ -151,6 +151,16 @@ const Game = (props) => {
                     />
                 ))
             }
+
+            {   // On affiche les bombes
+                bombes.bombes.map((bombe)=>(
+                    <Bombes
+                        datas={bombe}
+                    />
+                ))
+            }
+
+
             
         </StyledGame>
     )
@@ -158,6 +168,7 @@ const Game = (props) => {
 
 Game.propTypes = {
     persosLocal: PropTypes.array.isRequired,
+    bombes: PropTypes.object.isRequired,
     maj: PropTypes.func.isRequired,
 };
 

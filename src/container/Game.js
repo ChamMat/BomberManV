@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 // Du composant qui a besoin de data ou d'actions
 import { majPersos } from 'actions/majPerso';
 import { changeInput } from 'actions/keyInput'
+import { setNewBomb } from 'actions/bomb';
 import Game from 'components/Game/index';
 
 
@@ -13,6 +14,7 @@ const mapStateToProps = (state) => {
   return ({
   persosLocal: state.perso.persosLocal,
   keyInput: state.keysInput,
+  bombes: state.bombes,
 })};
 
 // == Actions / dispatch
@@ -25,6 +27,9 @@ const mapDispatchToProps = (dispatch) => ({
   newKeyInput: (key, value) => {
     dispatch(changeInput(key, value));
   },
+  newBomb: (value) => {
+    dispatch(setNewBomb(value))
+  }
 });
 
 // création du lien : container

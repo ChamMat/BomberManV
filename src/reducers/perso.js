@@ -18,18 +18,23 @@ const initialState = {
       jumpPower: 0,
       chute: false,
       repos: true,
+      reposBombe: true,
       keys: {
         up: false,
         left: false,
         right: false,
         bomb: false,
+      },
+      playerBomb: {
+        nbr: 3,
+        timer: 3,
       }
     },
     {
       localId:1,
       posX: 100,
       posY: 0,
-      direction: 'right',
+      direction: 'left',
       idle: true,
       walk: false,
       jump: false,
@@ -39,11 +44,16 @@ const initialState = {
       jumpPower: 0,
       chute: false,
       repos: true,
+      reposBombe: true,
       keys: {
         up: false,
         left: false,
         right: false,
         bomb: false,
+      },
+      playerBomb: {
+        nbr: 3,
+        timer: 3,
       }
     }
   ],

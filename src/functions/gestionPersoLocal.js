@@ -1,6 +1,6 @@
 import platforms from 'datas/platforms';
 
-const gestionPersoLocal = (perso, keyInput) => {
+const gestionPersoLocal = (perso, keyInput, newBomb) => {
     let {
         localId,
         posX,
@@ -15,7 +15,9 @@ const gestionPersoLocal = (perso, keyInput) => {
         jumpPower,
         chute,
         repos,
+        reposBombe,
         keys,
+        playerBomb,
     } = perso;
 
     const {
@@ -205,6 +207,20 @@ const gestionPersoLocal = (perso, keyInput) => {
         }
     }
 
+    if (bomb && reposBombe) {
+        reposBombe = false;
+        const timerBombe = playerBomb.timer;
+        newBomb({
+            posX,
+            posY,
+            timerBombe,
+        });
+    }
+
+    if (!bomb) {
+        reposBombe = true;
+    }
+
    
     chute = true;
     jumpPower -= .3; 
@@ -214,6 +230,7 @@ const gestionPersoLocal = (perso, keyInput) => {
     const playerHeight = 7;
     const playerWidth = 3;
     const playerFoot = posY + 5;
+
  // ################# Gestion des collisions des plateforms
     platforms.platforms.map((platform) => {
         // console.log("PLATFORME: ", platform.id);
@@ -227,11 +244,14 @@ const gestionPersoLocal = (perso, keyInput) => {
 
         if (posX > platLeft -2.3 && posX < platLeft + platWidth -.3) {
            if (playerFoot > platTop -1 && playerFoot -1 < parseInt(platTop) + parseInt(platHeight)) {
+               // Ici, on est sur une plateform
                chute = false;
                jumpPower = 0;
+               // Cette ligne sert à mettre tout les perso sur le même niveau
                posY = platTop + platHeight - 7;
            }
            if (posY >= platTop && posY <= parseInt(platTop) + parseInt(platHeight)){
+               // ici la tête du perso tape une plateforme
                if (jumpPower >= 2.5) {
                    jumpPower = 2.5;
                }
@@ -270,7 +290,9 @@ const gestionPersoLocal = (perso, keyInput) => {
         jumpPower,
         chute,
         repos,
+        reposBombe,
         keys,
+        playerBomb,
     };
 };
 
