@@ -142,6 +142,8 @@ const Game = (props) => {
                 timerBombe = 0;
             }
 
+
+            // SI le timer tombe à 0, on n'ajoute pas la bombe au tableau
             if (timerBombe !== 0 ){
             majBomb.push({
                 posX,
