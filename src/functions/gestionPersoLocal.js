@@ -2,7 +2,7 @@ import platforms from 'datas/platforms';
 
 import majKeyLocal from './gestionPersoLocal/majKeyLocal';
 
-const gestionPersoLocal = (perso, keyInput, newBomb) => {
+const gestionPersoLocal = (perso, keyInput, newBomb, bombesId) => {
     let {
         localId,
         posX,
@@ -222,6 +222,7 @@ const gestionPersoLocal = (perso, keyInput, newBomb) => {
         reposBombe = false;
         const timerBombe = playerBomb.timer;
         newBomb({
+            id: bombesId,
             posX,
             posY,
             timerBombe,

@@ -124,12 +124,12 @@ const Game = (props) => {
         // console.log("=========NEW TILT============");
         // Interval de temps. C'est ici que la boucle logique s'effectue.
 
-
         const majBomb = [];
 
         bombes.bombes.map((bombe) => {
             // Ici notre logique des bombes:
             let {
+                id,
                 posX,
                 posY,
                 timerBombe,
@@ -146,6 +146,7 @@ const Game = (props) => {
             // SI le timer tombe à 0, on n'ajoute pas la bombe au tableau
             if (timerBombe !== 0 ){
             majBomb.push({
+                id,
                 posX,
                 posY,
                 timerBombe,
@@ -163,7 +164,7 @@ const Game = (props) => {
         const majPerso = [];
         Object.values(persosLocal).forEach(perso => {
             // console.log('JOUEUR: ', perso.localId);
-            majPerso.push(gestionPersoLocal(perso, props.keyInput, newBomb))
+            majPerso.push(gestionPersoLocal(perso, props.keyInput, newBomb, bombes.totalBombe))
         });
 
         maj(majPerso);
@@ -187,11 +188,14 @@ const Game = (props) => {
             }
 
             {   // On affiche les bombes
-                bombes.bombes.map((bombe)=>(
+                bombes.bombes.map((bombe)=>{
+                    {/* console.log(bombe) */}
+                    return(
                     <Bombes
+                        key={bombe.id}
                         datas={bombe}
                     />
-                ))
+                )})
             }
 
 

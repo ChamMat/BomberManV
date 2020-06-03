@@ -3,7 +3,8 @@ import { NEW_BOMB, MAJ_BOMB } from '../actions/bomb';
 
 // Initial State
 const initialState = {
-    bombes:[]
+  totalBombe: 0, // Utilisé pour donner un id aux bombes
+  bombes:[]
 };
 
 // Reducer
@@ -13,6 +14,7 @@ const bombesReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         bombes: [ ...state.bombes, action.value],
+        totalBombe: state.totalBombe + 1,
       };
     case MAJ_BOMB:
       return {
