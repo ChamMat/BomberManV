@@ -148,7 +148,7 @@ const Game = (props) => {
 
         maj(majPerso);
 
-    }, 25); // ==============> nombre de miliseconde entre chaque frame (ideal 100)
+    }, 25); // ==============> nombre de miliseconde entre chaque frame (ideal 25)
 
     useEffect(() => {
         document.addEventListener('keydown', handleKeyDown);

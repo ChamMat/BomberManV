@@ -5,12 +5,14 @@ const gestionBombes = (bombe) => {
      // Ici notre logique des bombes:
      let {
         id,
+        active,
         posX,
         posY,
         timerBombe,
         chute,
         temporisationAnimation,
         image,
+        explosion,
     } = bombe;
 
     const gravite = 2;
@@ -43,9 +45,11 @@ const gestionBombes = (bombe) => {
     }
     
     // Maj du timer
-    timerBombe -= 25;
-    if (timerBombe <= 0) {
-        timerBombe = 0;
+    if (timerBombe <= 0 && !explosion) {
+        explosion = true;
+        image ='explosion00';
+    } else {
+        timerBombe -= 25;
     }
 
     // #############------ANIMATION-------###########
@@ -53,35 +57,105 @@ const gestionBombes = (bombe) => {
 
     switch(image) {
         case 'bombe0':
-            if (temporisationAnimation >= 4) {
+            if (temporisationAnimation >= 6) {
                 image = 'bombe1';
                 temporisationAnimation = 0;
             }
         break;
         case 'bombe1':
-            if (temporisationAnimation >= 4) {
+            if (temporisationAnimation >= 6) {
                 image = 'bombe0';
                 temporisationAnimation = 0;
             }
         break;
+        case 'explosion00':
+            if (temporisationAnimation >= 4) {
+                image = 'explosion01';
+                temporisationAnimation = 0;
+            }
+        break;
+        case 'explosion01':
+            if (temporisationAnimation >= 4) {
+                image = 'explosion02';
+                temporisationAnimation = 0;
+            }
+        break;
+        case 'explosion02':
+            if (temporisationAnimation >= 4) {
+                image = 'explosion03';
+                temporisationAnimation = 0;
+            }
+        break;
+        case 'explosion03':
+            if (temporisationAnimation >= 4) {
+                image = 'explosion04';
+                temporisationAnimation = 0;
+            }
+        break;
+        case 'explosion04':
+            if (temporisationAnimation >= 4) {
+                image = 'explosion05';
+                temporisationAnimation = 0;
+            }
+        break;
+        case 'explosion05':
+            if (temporisationAnimation >= 4) {
+                image = 'explosion06';
+                temporisationAnimation = 0;
+            }
+        break;
+        case 'explosion06':
+            if (temporisationAnimation >= 4) {
+                image = 'explosion07';
+                temporisationAnimation = 0;
+            }
+        break;
+        case 'explosion07':
+            if (temporisationAnimation >= 4) {
+                image = 'explosion08';
+                temporisationAnimation = 0;
+            }
+        break;
+        case 'explosion08':
+            if (temporisationAnimation >= 4) {
+                image = 'explosion09';
+                temporisationAnimation = 0;
+            }
+        break;
+        case 'explosion09':
+            if (temporisationAnimation >= 4) {
+                image = 'explosion10';
+                temporisationAnimation = 0;
+            }
+        break;
+        case 'explosion10':
+            if (temporisationAnimation >= 4) {
+                image = 'explosion11';
+                temporisationAnimation = 0;
+            }
+        break;
+        case 'explosion11':
+            active = false;
+        break;
         default:
-            image = 'bombe0';
+        
             temporisationAnimation = 0;
     }
 
 
-
-
     // SI le timer tombe à 0, on n'ajoute pas la bombe au tableau
-    if (timerBombe !== 0 ){
+    // if (timerBombe !== 0 && !explosion){
+        if (active){
         return ({
             id,
+            active,
             posX,
             posY,
             timerBombe,
             chute,
             temporisationAnimation,
             image,
+            explosion,
         });
     }
     return false;

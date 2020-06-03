@@ -225,12 +225,14 @@ const gestionPersoLocal = (perso, keyInput, newBomb, bombesId) => {
         const posXBombe = posX + 1;
         newBomb({
             id: bombesId,
+            active: true,
             posX: posXBombe,
             posY,
             timerBombe,
             chute: true,
             temporisationAnimation: 0,
             image: 'bombe0',
+            explosion: false,
         });
     }
 
