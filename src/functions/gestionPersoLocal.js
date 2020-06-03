@@ -22,7 +22,7 @@ const gestionPersoLocal = (perso, keyInput, newBomb, bombesId) => {
         playerBomb,
     } = perso;
 
-    const vitesse = .5;
+    const vitesse = .7;
     // const vitesse = .1;
     const gravite = 2;
     
