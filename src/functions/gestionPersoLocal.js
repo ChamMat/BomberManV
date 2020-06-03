@@ -22,7 +22,8 @@ const gestionPersoLocal = (perso, keyInput, newBomb, bombesId) => {
         playerBomb,
     } = perso;
 
-    const vitesse = .7;
+    const vitesse = .5;
+    // const vitesse = .1;
     const gravite = 2;
     
 
@@ -221,12 +222,15 @@ const gestionPersoLocal = (perso, keyInput, newBomb, bombesId) => {
     if (bomb && reposBombe) {
         reposBombe = false;
         const timerBombe = playerBomb.timer;
+        const posXBombe = posX + 1;
         newBomb({
             id: bombesId,
-            posX,
+            posX: posXBombe,
             posY,
             timerBombe,
             chute: true,
+            temporisationAnimation: 0,
+            image: 'bombe0',
         });
     }
 

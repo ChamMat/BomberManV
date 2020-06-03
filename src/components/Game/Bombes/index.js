@@ -2,10 +2,11 @@ import React from 'react';
 import StyledBomb from './StyledBomb';
 
 const Bombes = (datas) => {
-    const imageBomb = "bomb0";
+    const imageBomb = datas.datas.image;
+
     return (
         <StyledBomb props = {datas}>
-            <div className= {imageBomb}/>
+            <div className= {`bombe ${imageBomb}`}/>
         </StyledBomb>
     );
 }

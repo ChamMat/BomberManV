@@ -13,10 +13,24 @@ const StyledBomb = styled.div.attrs((props) => {
         },
 })})`
     position: absolute;
-    width:2vw;
-    height:2vw ;
-    background-color:black;
-    border-radius:100%;
+    .bombe {
+        width:2vw;
+        height:2vw ;
+        background-repeat: no-repeat;
+        background-size:contain;
+    }
+    /* background-color:black; */
+    /* border-radius:100%; */
+
+    .bombe0 {
+        background-image: url(/image/bomb/bomb0.png);
+    }
+
+    .bombe1 {
+        background-image: url(/image/bomb/bomb1.png);
+        width: 2.3vw;
+        height: 2.3vw;
+    }
     
 `;
 

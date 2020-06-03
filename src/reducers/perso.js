@@ -27,7 +27,7 @@ const initialState = {
       },
       playerBomb: {
         nbr: 3,
-        timer: 3000,
+        timer: 10000,
       }
     },
     {
@@ -53,7 +53,7 @@ const initialState = {
       },
       playerBomb: {
         nbr: 3,
-        timer: 3000,
+        timer: 10000,
       }
     }
   ],
