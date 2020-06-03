@@ -4,6 +4,7 @@ import StyledGame from './StyledGame';
 
 import useInterval from 'functions/useInterval';
 import gestionPersoLocal from 'functions/gestionPersoLocal';
+import gestionBombes from 'functions/gestionBombes';
 
 import Perso from './Perso';
 import Bombes from './Bombes';
@@ -127,32 +128,10 @@ const Game = (props) => {
         const majBomb = [];
 
         bombes.bombes.map((bombe) => {
-            // Ici notre logique des bombes:
-            let {
-                id,
-                posX,
-                posY,
-                timerBombe,
-            } = bombe;
-
-            
-            // Maj du timer
-            timerBombe -= 40;
-            if (timerBombe <= 0) {
-                timerBombe = 0;
+            const bombeMiseAJour = gestionBombes(bombe);
+            if (bombeMiseAJour) {
+                majBomb.push(bombeMiseAJour);
             }
-
-
-            // SI le timer tombe à 0, on n'ajoute pas la bombe au tableau
-            if (timerBombe !== 0 ){
-            majBomb.push({
-                id,
-                posX,
-                posY,
-                timerBombe,
-            });
-            }
-
         });
 
         reducerMajBomb(majBomb);

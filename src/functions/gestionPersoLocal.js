@@ -226,6 +226,7 @@ const gestionPersoLocal = (perso, keyInput, newBomb, bombesId) => {
             posX,
             posY,
             timerBombe,
+            chute: true,
         });
     }
 
