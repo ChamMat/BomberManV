@@ -238,6 +238,7 @@ const gestionPersoLocal = (perso, keyInput, newBomb, bombesId) => {
                 temporisationAnimation: 0,
                 image: 'bombe0',
                 explosion: false,
+                danger: false,
             });
         }
 

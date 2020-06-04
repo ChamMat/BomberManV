@@ -13,6 +13,7 @@ const gestionBombes = (bombe) => {
         temporisationAnimation,
         image,
         explosion,
+        danger,
     } = bombe;
 
     const gravite = 2;
@@ -47,9 +48,11 @@ const gestionBombes = (bombe) => {
     // Maj du timer
     if (timerBombe <= 0 && !explosion) {
         explosion = true;
+        danger = true;
         image ='explosion00';
-        let audioElement = new Audio('/son/DeathFlash.flac'); 
-        audioElement.play();
+        let explosionSon = new Audio('/son/DeathFlash.flac'); 
+        explosionSon.volume = .7;
+        explosionSon.play();
     } else {
         timerBombe -= 25;
     }
@@ -116,6 +119,7 @@ const gestionBombes = (bombe) => {
             if (temporisationAnimation >= 4) {
                 image = 'explosion08';
                 temporisationAnimation = 0;
+                danger = false;
             }
         break;
         case 'explosion08':
@@ -158,6 +162,7 @@ const gestionBombes = (bombe) => {
             temporisationAnimation,
             image,
             explosion,
+            danger,
         });
     }
     return false;

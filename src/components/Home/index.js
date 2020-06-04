@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import StyledHome from './StyledHome';
 
 const Home = () =>
@@ -7,8 +8,7 @@ const Home = () =>
         <StyledHome>
             <h1>BomberMan V</h1>
             <div className="menu cadre">
-                <button>Nouvelle partie</button>
-                <button>test</button>
+                <button><Link to={`/game/LocalPvP`}>Joueur contre Joueur</Link></button>
             </div>
         </StyledHome>
     )

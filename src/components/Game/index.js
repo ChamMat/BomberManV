@@ -155,12 +155,12 @@ const Game = (props) => {
         // Pour chaque bombe qui explose:
 
         majBomb.map((bombe) => {
-            if(bombe.explosion){
+            if(bombe.danger){
                 // On vérifie si un joueurs se trouve à proximité:
                 const bombeX = bombe.posX;
                 const bombeY = bombe.posY;
                 const bombeWidth = 7.5; // bombe width = 15/2;
-                const bombeHeightTop = -15;
+                const bombeHeightTop = -13;
                 const bombeHeightBottom = 2;
 
                 majPerso.map((perso)=>{
@@ -188,9 +188,6 @@ const Game = (props) => {
     useEffect(() => {
         document.addEventListener('keydown', handleKeyDown);
         document.addEventListener('keyup', handleKeyUp);
-        let musique = new Audio('son/Lost_In_The_Dawn.mp3');
-        musique.volume = 0.30;
-        musique.play();
         
       },[]);
 

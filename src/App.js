@@ -1,9 +1,15 @@
 import React from 'react';
 import './reset.css';
 
-// import Home from './components/Home/index';
+import {
+  Switch,
+  Route,
+} from 'react-router-dom';
+
+import Home from './components/Home/index';
 import Platform from './components/Platform/index';
 import Game from './container/Game';
+import Musique from './components/Musique/index';
 
 import platformData from 'datas/platforms';
 
@@ -25,7 +31,14 @@ function App() {
           />
         ))
       }
-      <Game />
+
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/game/LocalPvP">
+          <Game />
+          <Musique />
+        </Route>
+      </Switch>
     </div>
   );
 }
