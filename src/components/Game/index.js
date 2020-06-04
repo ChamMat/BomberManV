@@ -149,13 +149,49 @@ const Game = (props) => {
             }
         });
 
+        // =====================MAJ des mort=================
+        //  On récupère les données mises à jours et on regarde si des bombes on tué des joueurs:
+
+        // Pour chaque bombe qui explose:
+
+        majBomb.map((bombe) => {
+            if(bombe.explosion){
+                // On vérifie si un joueurs se trouve à proximité:
+                const bombeX = bombe.posX;
+                const bombeY = bombe.posY;
+                const bombeWidth = 7.5; // bombe width = 15/2;
+                const bombeHeightTop = -15;
+                const bombeHeightBottom = 2;
+
+                majPerso.map((perso)=>{
+                    if (!perso.mort){
+                        const persoX = perso.posX;
+                        const persoY = perso.posY;
+
+                            if (persoX > bombeX- bombeWidth && persoX < bombeX + bombeWidth){
+                            if (persoY > bombeY + bombeHeightTop && persoY < bombeY + bombeHeightBottom)
+                            {
+                                perso.mort = true;
+                            }
+                        }
+
+                    }
+                })
+            }
+        });
+
         maj(majPerso);
+
 
     }, 25); // ==============> nombre de miliseconde entre chaque frame (ideal 25)
 
     useEffect(() => {
         document.addEventListener('keydown', handleKeyDown);
         document.addEventListener('keyup', handleKeyUp);
+        let musique = new Audio('son/Lost_In_The_Dawn.mp3');
+        musique.volume = 0.30;
+        musique.play();
+        
       },[]);
 
     return (

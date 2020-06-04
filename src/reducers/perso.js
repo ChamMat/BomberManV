@@ -6,7 +6,7 @@ const initialState = {
   persosLocal: [
     {
       actif: true,
-      mort:true,
+      mort:false,
       localId:0,
       name:'player1',
       posX: 0,

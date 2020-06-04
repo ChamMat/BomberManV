@@ -48,6 +48,8 @@ const gestionBombes = (bombe) => {
     if (timerBombe <= 0 && !explosion) {
         explosion = true;
         image ='explosion00';
+        let audioElement = new Audio('/son/DeathFlash.flac'); 
+        audioElement.play();
     } else {
         timerBombe -= 25;
     }
