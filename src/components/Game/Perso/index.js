@@ -4,6 +4,7 @@ import StyledPerso from './StyledPerso';
 
 const Perso = (props) => {
     const {
+        name,
         posX,
         posY,
         direction,
@@ -14,25 +15,30 @@ const Perso = (props) => {
         walkImg,
     } = props.datas;
 
+
     return (
         <StyledPerso
             posX={posX}
             posY={posY}
             direction={direction}
         >
-            {   idle &&
-                <div className={`perso ${idleImg}`} />
-            }
+            <div className="playerName">{name}</div>
+            <div className="wrapper">
+            
+                {   idle &&
+                    <div className={`perso ${idleImg}`} />
+                }
 
-            {
-                walk &&
-                <div className={`perso ${walkImg}`} />
-            }
+                {
+                    walk &&
+                    <div className={`perso ${walkImg}`} />
+                }
 
-            {
-                jump &&
-                <div className={`perso jump`} />
-            }
+                {
+                    jump &&
+                    <div className={`perso jump`} />
+                }
+            </div>
         </StyledPerso>
     )
 };

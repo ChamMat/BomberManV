@@ -5,7 +5,10 @@ import { MAJ_PERSOS } from '../actions/majPerso';
 const initialState = {
   persosLocal: [
     {
+      actif: true,
+      mort:true,
       localId:0,
+      name:'player1',
       posX: 0,
       posY: 0,
       direction: 'right',
@@ -31,7 +34,10 @@ const initialState = {
       }
     },
     {
+      actif: true,
+      mort:false,
       localId:1,
+      name: 'player2',
       posX: 100,
       posY: 0,
       direction: 'left',

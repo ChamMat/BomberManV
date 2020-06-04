@@ -143,7 +143,10 @@ const Game = (props) => {
         const majPerso = [];
         Object.values(persosLocal).forEach(perso => {
             // console.log('JOUEUR: ', perso.localId);
-            majPerso.push(gestionPersoLocal(perso, props.keyInput, newBomb, bombes.totalBombe))
+            const persoAjour = gestionPersoLocal(perso, props.keyInput, newBomb, (bombes.totalBombe + Math.random()));
+            if (persoAjour.actif) {
+                majPerso.push(persoAjour);
+            }
         });
 
         maj(majPerso);
@@ -168,7 +171,6 @@ const Game = (props) => {
 
             {   // On affiche les bombes
                 bombes.bombes.map((bombe)=>{
-                    {/* console.log(bombe) */}
                     return(
                     <Bombes
                         key={bombe.id}
