@@ -9,7 +9,7 @@ import {
 import Home from './components/Home/index';
 import Platform from './components/Platform/index';
 import Game from './container/Game';
-import Musique from './components/Musique/index';
+import Menu from './container/Menu';
 
 import platformData from 'datas/platforms';
 
@@ -19,7 +19,8 @@ function App() {
     <div className="App">
       <img className="background bleu" src="/image/background/country-platform-back.png" alt="fond bleu" />
       <img className="background foret" src="/image/background/country-platform-forest.png" alt="fond foret" />
-      <img className="background chemin" src="/image/background/country-platform-tiles-example.png" alt="fond chemin" />
+      {/* <img className="background chemin" src="/image/background/country-platform-tiles-example.png" alt="fond chemin" /> */}
+
       {
         platformData.platforms.map((platform) => (
           <Platform 
@@ -36,7 +37,7 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route exact path="/game/LocalPvP">
           <Game />
-          <Musique />
+          <Menu />
         </Route>
       </Switch>
     </div>

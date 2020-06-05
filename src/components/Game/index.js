@@ -21,9 +21,11 @@ const Game = (props) => {
         reducerMajBomb,
     } = props;
 
+
     const handleKeyDown = (evt) => {
         let key;
         let value;
+
 
 
         switch (evt.code) {
@@ -122,65 +124,68 @@ const Game = (props) => {
 
 
     useInterval(() => {
-        // console.log("=========NEW TILT============");
-        // Interval de temps. C'est ici que la boucle logique s'effectue.
 
-        const majBomb = [];
+        if (!props.pause) {
+            // console.log("=========NEW TILT============");
+            // Interval de temps. C'est ici que la boucle logique s'effectue.
 
-        bombes.bombes.map((bombe) => {
-            const bombeMiseAJour = gestionBombes(bombe);
-            if (bombeMiseAJour) {
-                majBomb.push(bombeMiseAJour);
-            }
-        });
+            const majBomb = [];
 
-        reducerMajBomb(majBomb);
-        
+            bombes.bombes.map((bombe) => {
+                const bombeMiseAJour = gestionBombes(bombe);
+                if (bombeMiseAJour) {
+                    majBomb.push(bombeMiseAJour);
+                }
+            });
 
-        //=======================MAJ des perso======================
-        // Pour chaque personnage, on créé un objet "image" avec les valeurs mise à jours.
-        // Ce sont ces valeurs qui sont transmises au reducer de redux.
-        const majPerso = [];
-        Object.values(persosLocal).forEach(perso => {
-            // console.log('JOUEUR: ', perso.localId);
-            const persoAjour = gestionPersoLocal(perso, props.keyInput, newBomb, (bombes.totalBombe + Math.random()));
-            if (persoAjour.actif) {
-                majPerso.push(persoAjour);
-            }
-        });
+            reducerMajBomb(majBomb);
+            
 
-        // =====================MAJ des mort=================
-        //  On récupère les données mises à jours et on regarde si des bombes on tué des joueurs:
+            //=======================MAJ des perso======================
+            // Pour chaque personnage, on créé un objet "image" avec les valeurs mise à jours.
+            // Ce sont ces valeurs qui sont transmises au reducer de redux.
+            const majPerso = [];
+            Object.values(persosLocal).forEach(perso => {
+                // console.log('JOUEUR: ', perso.localId);
+                const persoAjour = gestionPersoLocal(perso, props.keyInput, newBomb, (bombes.totalBombe + Math.random()));
+                if (persoAjour.actif) {
+                    majPerso.push(persoAjour);
+                }
+            });
 
-        // Pour chaque bombe qui explose:
+            // =====================MAJ des mort=================
+            //  On récupère les données mises à jours et on regarde si des bombes on tué des joueurs:
 
-        majBomb.map((bombe) => {
-            if(bombe.danger){
-                // On vérifie si un joueurs se trouve à proximité:
-                const bombeX = bombe.posX;
-                const bombeY = bombe.posY;
-                const bombeWidth = 7.5; // bombe width = 15/2;
-                const bombeHeightTop = -12;
-                const bombeHeightBottom = 2;
+            // Pour chaque bombe qui explose:
 
-                majPerso.map((perso)=>{
-                    if (!perso.mort){
-                        const persoX = perso.posX;
-                        const persoY = perso.posY;
+            majBomb.map((bombe) => {
+                if(bombe.danger){
+                    // On vérifie si un joueurs se trouve à proximité:
+                    const bombeX = bombe.posX;
+                    const bombeY = bombe.posY;
+                    const bombeWidth = 7.5; // bombe width = 15/2;
+                    const bombeHeightTop = -12;
+                    const bombeHeightBottom = 2;
 
-                            if (persoX > bombeX- bombeWidth && persoX < bombeX + bombeWidth){
-                            if (persoY > bombeY + bombeHeightTop && persoY < bombeY + bombeHeightBottom)
-                            {
-                                perso.mort = true;
+                    majPerso.map((perso)=>{
+                        if (!perso.mort){
+                            const persoX = perso.posX;
+                            const persoY = perso.posY;
+
+                                if (persoX > bombeX- bombeWidth && persoX < bombeX + bombeWidth){
+                                if (persoY > bombeY + bombeHeightTop && persoY < bombeY + bombeHeightBottom)
+                                {
+                                    perso.mort = true;
+                                }
                             }
+
                         }
+                    })
+                }
+            });
 
-                    }
-                })
-            }
-        });
-
-        maj(majPerso);
+            maj(majPerso);
+        }
 
 
     }, 25); // ==============> nombre de miliseconde entre chaque frame (ideal 25)

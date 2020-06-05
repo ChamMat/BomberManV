@@ -15,6 +15,7 @@ const mapStateToProps = (state) => {
   persosLocal: state.perso.persosLocal,
   keyInput: state.keysInput,
   bombes: state.bombes,
+  pause: state.menu.pause,
 })};
 
 // == Actions / dispatch
