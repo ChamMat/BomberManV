@@ -16,7 +16,7 @@ const StyledBomb = styled.div.attrs((props) => {
 
     .bombe {
         width:2vw;
-        height:2vw ;
+        height:3vw ;
         background-repeat: no-repeat;
         background-size:contain;
     }
@@ -30,7 +30,7 @@ const StyledBomb = styled.div.attrs((props) => {
     .bombe1 {
         background-image: url(/image/bomb/bomb1.png);
         width: 2.3vw;
-        height: 2.3vw;
+        height: 3.6vw;
     }
 
     .explosion00 {

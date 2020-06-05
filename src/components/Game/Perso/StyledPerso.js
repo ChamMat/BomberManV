@@ -27,6 +27,7 @@ const StyledPerso = styled.div.attrs((props) => {
         font-weight:bold;
         text-transform:uppercase;
         overflow:hidden;
+        font-size:2vh;
     }
 
     .wrapper {

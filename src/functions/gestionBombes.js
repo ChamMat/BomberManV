@@ -36,7 +36,7 @@ const gestionBombes = (bombe) => {
             if (bombeGround > platTop -1 && bombeGround -1 < parseInt(platTop) + parseInt(platHeight)) {
                 // Ici, on est sur une plateform
                 chute = false;
-                posY = platTop + platHeight - 9;
+                posY = platTop + platHeight - 11;
             }
 
             }

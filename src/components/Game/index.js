@@ -160,7 +160,7 @@ const Game = (props) => {
                 const bombeX = bombe.posX;
                 const bombeY = bombe.posY;
                 const bombeWidth = 7.5; // bombe width = 15/2;
-                const bombeHeightTop = -13;
+                const bombeHeightTop = -12;
                 const bombeHeightBottom = 2;
 
                 majPerso.map((perso)=>{
