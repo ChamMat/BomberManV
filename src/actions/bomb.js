@@ -1,6 +1,7 @@
 // Types
 export const NEW_BOMB = 'NEW_BOMB';
 export const MAJ_BOMB = 'MAJ_BOMB';
+export const RESET = 'RESET';
 
 
 // Creators
@@ -15,3 +16,9 @@ export const majBomb = (newTab) => {
   type: MAJ_BOMB,
   newTab,
 })};
+
+export const resetBombe = () => {
+  return ({
+    type: RESET,
+  })
+}

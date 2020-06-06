@@ -1,5 +1,5 @@
 // Action Types
-import { NEW_BOMB, MAJ_BOMB } from '../actions/bomb';
+import { NEW_BOMB, MAJ_BOMB, RESET } from '../actions/bomb';
 
 // Initial State
 const initialState = {
@@ -20,6 +20,12 @@ const bombesReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         bombes: action.newTab,
+      };
+    case RESET:
+      return {
+        ...state,
+        totalBombe: 0,
+        bombes: [],
       };
     default:
       return state;

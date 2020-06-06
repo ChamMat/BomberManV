@@ -5,6 +5,7 @@ export const VOLUME_MUSIQUE_PLUS = 'VOLUME_MUSIQUE_PLUS';
 export const VOLUME_MUSIQUE_MOIN = 'VOLUME_MUSIQUE_MOIN';
 export const VOLUME_EXPLOSION_PLUS = 'VOLUME_EXPLOSION_PLUS';
 export const VOLUME_EXPLOSION_MOIN = 'VOLUME_EXPLOSION_MOIN';
+export const CHANGE_PAGE = 'CHANGE_PAGE';
 
 
 // Creators
@@ -33,3 +34,9 @@ export const explosionPlus = () => ({
 export const explosionMoin = () => ({
   type: VOLUME_EXPLOSION_MOIN,
 });
+
+export const changePage = (value) => {
+  return({
+  type: CHANGE_PAGE,
+  page: value,
+})}

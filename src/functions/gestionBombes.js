@@ -21,7 +21,7 @@ const gestionBombes = (bombe) => {
 
     // ---------- GESTION DES COLISION AVEC LES PLATEFORMES
     if (chute) {
-        platforms.platforms.map((platform) => {
+        Object.values(platforms.platforms).forEach((platform) => {
             const platTop = parseInt(platform.top);
             const platLeft = parseInt(platform.left);
             const platHeight = parseInt(platform.height);

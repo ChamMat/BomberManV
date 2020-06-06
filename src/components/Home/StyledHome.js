@@ -5,33 +5,39 @@ const StyledHome = styled.div`
 
     height: 100vh;
     width:100vw;
-    background-color: rgba(255,255,255, .5);
+    background-color: rgba(0,0,0,.8);
+
+    color:#C9B9C9;
+
 
     h1 {
         text-align:center;
         margin-top: 3vh;
+        font-size: 6vh;
+        font-weight:bold;
+        color: white;
     }
 
     .cadre {
         margin: 5vh auto;
-        border: #000 2px solid;
-        width: 50%;
-        height: 50%;
+        border: black solid 1px;
+        width: 50vw;
+        height: 80vh;
+        background-color: rgba(0,0,0, .5);
+        border-radius: 3vw;
+        border: solid 2vh black;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
 
-        border-radius: 5px;
-        background-color: #444;
 
         button {
-            width: 50%;
-            margin: 4vh;
-            padding: 2vh;
+            font-size: 3vh;
+            width: 30vw;
             border: none;
-            border-radius: 3px;
-            background-color: #fff;
+            padding: 1vh;
+            border-radius: 4px;
         }
     }
 `;

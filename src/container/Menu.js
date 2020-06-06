@@ -8,6 +8,7 @@ import {
   musiqueMoin,
   explosionPlus,
   explosionMoin,
+  changePage,
 } from 'actions/menu';
 
 import Musique from 'components/Menu/index';
@@ -52,6 +53,10 @@ const mapDispatchToProps = (dispatch) => ({
   volumeExplosionMoin: () => {
     dispatch(explosionMoin())
   },
+
+  newPage: (value) => {
+    dispatch(changePage(value))
+  }
 
 });
 

@@ -21,9 +21,6 @@ const Musique = (props) => {
         props.dispatchPause();
     };
 
-    const handleMusiqueMute = () => {
-        console.log("musique mute");
-    }
 
     const handleClickVolumeMusiquePlus = () => {
         props.volumeMusiquePlus();
@@ -58,6 +55,7 @@ const Musique = (props) => {
 
     const handleClickMenuPrincipal = () => {
         props.musiqueAmbiance.pause();
+        props.newPage('home');
 
     };
 
@@ -72,7 +70,7 @@ const Musique = (props) => {
             props.musiqueAmbiance.volume= props.volumeMusique;
             }
         }
-    },[props.musiqueAmbiance]);
+    },[props]);
 
     const volumeMusique = props.volumeMusique * 10;
     const volumeExplosion = props.volumeExplosion * 10;
@@ -93,8 +91,30 @@ const Musique = (props) => {
                         <ul>
                             <li><h3>Musique</h3>
                                 <ul>
-                                    <li className="optionText">Volume Musique: <button className="buttonVolume" onClick={handleClickVolumeMusiqueMoin}>-</button> <button className="buttonVolume" onClick={handleClickVolumeMusiquePlus}>+</button> <span className="volume">{volumeMusique}/10</span></li>
-                                    <li className="optionText">Volume Explosion: <button className="buttonVolume" onClick={handleClickVolumeExplosionMoin}>-</button> <button className="buttonVolume" onClick={handleClickVolumeExplosionPlus}>+</button> <span className="volume">{volumeExplosion}/10</span></li>
+                                    <li className="optionText">
+                                        Volume Musique:
+                                        <button className="buttonVolume" onClick={handleClickVolumeMusiqueMoin}>
+                                            -
+                                        </button>
+                                        <button className="buttonVolume" onClick={handleClickVolumeMusiquePlus}>
+                                            +
+                                        </button>
+                                        <span className="volume">
+                                            {volumeMusique}/10
+                                        </span>
+                                    </li>
+                                    <li className="optionText">
+                                        Volume Explosion:
+                                        <button className="buttonVolume" onClick={handleClickVolumeExplosionMoin}>
+                                            -
+                                        </button>
+                                        <button className="buttonVolume" onClick={handleClickVolumeExplosionPlus}>
+                                            +
+                                        </button>
+                                        <span className="volume">
+                                            {volumeExplosion}/10
+                                        </span>
+                                    </li>
                                 </ul>
                             </li>
                             <li className="buttonMenu"><button onClick={handleClickMenuPrincipal}>Revenir au menu principal</button></li>

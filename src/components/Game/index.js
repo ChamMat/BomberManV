@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import StyledGame from './StyledGame';
 
+import persosLocalReset from 'datas/persoLocal';
+
 import useInterval from 'functions/useInterval';
 import gestionPersoLocal from 'functions/gestionPersoLocal';
 import gestionBombes from 'functions/gestionBombes';
@@ -16,112 +18,13 @@ const Game = (props) => {
         persosLocal,
         maj,
         bombes,
-        newKeyInput,
         newBomb,
         reducerMajBomb,
+        keyInput,
+        newGameBomb,
+        newGamePerso,
     } = props;
-
-
-    const handleKeyDown = (evt) => {
-        let key;
-        let value;
-
-
-
-        switch (evt.code) {
-            case 'ArrowUp':
-                    key = 'p1Up';
-                    value = true;
-                    newKeyInput(key, value);
-            break;
-            case 'ArrowLeft':
-                key = 'p1Left';
-                value = true;
-                newKeyInput(key, value);
-            break;
-            case 'ArrowRight':
-                key = 'p1Right';
-                value = true;
-                newKeyInput(key, value);
-            break;
-            case 'ArrowDown':
-                key = 'p1Bomb';
-                value = true;
-                newKeyInput(key, value);
-            break;
-            case 'KeyW':
-                key = 'p2Up';
-                value = true;
-                newKeyInput(key, value);
-            break;
-            case 'KeyA':
-                key = 'p2Left';
-                value = true;
-                newKeyInput(key, value);
-            break;
-            case 'KeyD':
-                key = 'p2Right';
-                value = true;
-                newKeyInput(key, value);
-            break;
-            case 'KeyS':
-                key = 'p2Bomb';
-                value = true;
-                newKeyInput(key, value);
-            break;
-            default:
-        }
-    };
-    
-    const handleKeyUp = (evt) => {
-        let key;
-        let value;
-
-        switch (evt.code) {
-            case 'ArrowUp':
-                key = 'p1Up';
-                value = false;
-                newKeyInput(key, value);
-            break;
-            case 'ArrowLeft':
-                key = 'p1Left';
-                value = false;
-                newKeyInput(key, value);
-            break;
-            case 'ArrowRight':
-                key = 'p1Right';
-                value = false;
-                newKeyInput(key, value);
-            break;
-            case 'ArrowDown':
-                key = 'p1Bomb';
-                value = false;
-                newKeyInput(key, value);
-            break;
-            case 'KeyW':
-                key = 'p2Up';
-                value = false;
-                newKeyInput(key, value);
-            break;
-            case 'KeyA':
-                key = 'p2Left';
-                value = false;
-                newKeyInput(key, value);
-            break;
-            case 'KeyD':
-                key = 'p2Right';
-                value = false;
-                newKeyInput(key, value);
-            break;
-            case 'KeyS':
-                key = 'p2Bomb';
-                value = false;
-                newKeyInput(key, value);
-            break;
-            default:
-        }
-    };
-
+   
 
     useInterval(() => {
 
@@ -131,7 +34,7 @@ const Game = (props) => {
 
             const majBomb = [];
 
-            bombes.bombes.map((bombe) => {
+            Object.values(bombes.bombes).forEach((bombe) => {
                 const bombeMiseAJour = gestionBombes(bombe);
                 if (bombeMiseAJour) {
                     majBomb.push(bombeMiseAJour);
@@ -147,7 +50,7 @@ const Game = (props) => {
             const majPerso = [];
             Object.values(persosLocal).forEach(perso => {
                 // console.log('JOUEUR: ', perso.localId);
-                const persoAjour = gestionPersoLocal(perso, props.keyInput, newBomb, (bombes.totalBombe + Math.random()));
+                const persoAjour = gestionPersoLocal(perso, keyInput, newBomb, (bombes.totalBombe + Math.random()));
                 if (persoAjour.actif) {
                     majPerso.push(persoAjour);
                 }
@@ -158,7 +61,7 @@ const Game = (props) => {
 
             // Pour chaque bombe qui explose:
 
-            majBomb.map((bombe) => {
+            Object.values(majBomb).forEach((bombe) => {
                 if(bombe.danger){
                     // On vérifie si un joueurs se trouve à proximité:
                     const bombeX = bombe.posX;
@@ -167,7 +70,7 @@ const Game = (props) => {
                     const bombeHeightTop = -12;
                     const bombeHeightBottom = 2;
 
-                    majPerso.map((perso)=>{
+                    Object.values(majPerso).forEach((perso)=>{
                         if (!perso.mort){
                             const persoX = perso.posX;
                             const persoY = perso.posY;
@@ -191,14 +94,15 @@ const Game = (props) => {
     }, 25); // ==============> nombre de miliseconde entre chaque frame (ideal 25)
 
     useEffect(() => {
-        document.addEventListener('keydown', handleKeyDown);
-        document.addEventListener('keyup', handleKeyUp);
-        
-      },[]);
+        newGameBomb();
+        newGamePerso(persosLocalReset.persosLocal);
+    }, [newGameBomb, newGamePerso]);
+
 
     return (
         <StyledGame>
             {   // On affiche les persos
+                persosLocal &&
                 persosLocal.map((perso)=>(
                     <Perso
                         key={perso.localId}

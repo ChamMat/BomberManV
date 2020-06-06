@@ -1,5 +1,6 @@
 // Types
 export const MAJ_PERSOS = 'MAJ_PERSOS';
+export const RESET = 'RESET';
 
 // Creators
 export const majPersos = (persosLocal) => ({
@@ -7,3 +8,8 @@ export const majPersos = (persosLocal) => ({
   type: MAJ_PERSOS,
   persosLocal,
 });
+
+export const resetPerso = (value) => ({
+  type: RESET,
+  value,
+})

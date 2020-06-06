@@ -1,19 +1,120 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './reset.css';
 
-import {
-  Switch,
-  Route,
-} from 'react-router-dom';
-
-import Home from './components/Home/index';
+import Home from './container/Home';
 import Platform from './components/Platform/index';
 import Game from './container/Game';
 import Menu from './container/Menu';
 
 import platformData from 'datas/platforms';
 
-function App() {
+function App(props) {
+
+  const page = props.page;
+  const { newKeyInput } = props;
+
+
+useEffect(() => {
+  const handleKeyDown = (evt) => {
+    let key;
+    let value;
+
+    switch (evt.code) {
+        case 'ArrowUp':
+                key = 'p1Up';
+                value = true;
+                newKeyInput(key, value);
+        break;
+        case 'ArrowLeft':
+            key = 'p1Left';
+            value = true;
+            newKeyInput(key, value);
+        break;
+        case 'ArrowRight':
+            key = 'p1Right';
+            value = true;
+            newKeyInput(key, value);
+        break;
+        case 'ArrowDown':
+            key = 'p1Bomb';
+            value = true;
+            newKeyInput(key, value);
+        break;
+        case 'KeyW':
+            key = 'p2Up';
+            value = true;
+            newKeyInput(key, value);
+        break;
+        case 'KeyA':
+            key = 'p2Left';
+            value = true;
+            newKeyInput(key, value);
+        break;
+        case 'KeyD':
+            key = 'p2Right';
+            value = true;
+            newKeyInput(key, value);
+        break;
+        case 'KeyS':
+            key = 'p2Bomb';
+            value = true;
+            newKeyInput(key, value);
+        break;
+        default:
+    }
+};
+
+const handleKeyUp = (evt) => {
+    let key;
+    let value;
+
+    switch (evt.code) {
+        case 'ArrowUp':
+            key = 'p1Up';
+            value = false;
+            newKeyInput(key, value);
+        break;
+        case 'ArrowLeft':
+            key = 'p1Left';
+            value = false;
+            newKeyInput(key, value);
+        break;
+        case 'ArrowRight':
+            key = 'p1Right';
+            value = false;
+            newKeyInput(key, value);
+        break;
+        case 'ArrowDown':
+            key = 'p1Bomb';
+            value = false;
+            newKeyInput(key, value);
+        break;
+        case 'KeyW':
+            key = 'p2Up';
+            value = false;
+            newKeyInput(key, value);
+        break;
+        case 'KeyA':
+            key = 'p2Left';
+            value = false;
+            newKeyInput(key, value);
+        break;
+        case 'KeyD':
+            key = 'p2Right';
+            value = false;
+            newKeyInput(key, value);
+        break;
+        case 'KeyS':
+            key = 'p2Bomb';
+            value = false;
+            newKeyInput(key, value);
+        break;
+        default:
+    }
+};
+  document.addEventListener('keydown', handleKeyDown);
+  document.addEventListener('keyup', handleKeyUp);
+},[newKeyInput]);
 
   return (
     <div className="App">
@@ -33,13 +134,24 @@ function App() {
         ))
       }
 
-      <Switch>
+      {page==='home' &&
+        <Home />
+      }
+
+      {page==='localPVP' &&
+        <div>
+          <Game />
+          <Menu />
+        </div>
+      }
+
+      {/* <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/game/LocalPvP">
           <Game />
           <Menu />
         </Route>
-      </Switch>
+      </Switch> */}
     </div>
   );
 }
