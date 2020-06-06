@@ -9,6 +9,7 @@ import {
   explosionPlus,
   explosionMoin,
   changePage,
+  saveCurrentTime,
 } from 'actions/menu';
 
 import Musique from 'components/Menu/index';
@@ -24,6 +25,7 @@ const mapStateToProps = (state) => {
   musique: state.menu.musique,
   volumeMusique: state.menu.volumeMusique,
   volumeExplosion: state.menu.volumeExplosion,
+  ambianceMusiqueCurrentTime: state.menu.musiquecurrentTime,
 })};
 
 // == Actions / dispatch
@@ -56,6 +58,10 @@ const mapDispatchToProps = (dispatch) => ({
 
   newPage: (value) => {
     dispatch(changePage(value))
+  },
+
+  setCurrentTime: (value) => {
+    dispatch(saveCurrentTime(value))
   }
 
 });

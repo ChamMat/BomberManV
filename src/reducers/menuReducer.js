@@ -7,6 +7,7 @@ import {
   VOLUME_EXPLOSION_PLUS,
   VOLUME_EXPLOSION_MOIN,
   CHANGE_PAGE,
+  SAVE_MUSIQUE_CURRENTTIME,
 } from '../actions/menu';
 
 // Initial State
@@ -15,6 +16,7 @@ const initialState = {
   finDePartie: false,
   musique: true,
   volumeMusique: 0,
+  musiquecurrentTime: 0,
   volumeExplosion: 0.7,
   page: 'home',
 };
@@ -88,8 +90,16 @@ const menuReducer = (state = initialState, action = {}) => {
           return {
             ...state,
             page: action.page,
+            musiquecurrentTime: 0,
             pause: false,
+            musiqueAmbiance: null,
           }
+
+          case SAVE_MUSIQUE_CURRENTTIME:
+            return {
+              ...state,
+              musiquecurrentTime: action.currentTime,
+            }
 
     default:
       return state;

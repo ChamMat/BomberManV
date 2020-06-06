@@ -2,6 +2,7 @@
 export const NEW_BOMB = 'NEW_BOMB';
 export const MAJ_BOMB = 'MAJ_BOMB';
 export const RESET = 'RESET';
+export const EXPLOSE = 'EXPLOSE';
 
 
 // Creators
@@ -20,5 +21,12 @@ export const majBomb = (newTab) => {
 export const resetBombe = () => {
   return ({
     type: RESET,
+  })
+}
+
+export const explose = (id) => {
+  return ({
+    type: EXPLOSE,
+    id: id,
   })
 }

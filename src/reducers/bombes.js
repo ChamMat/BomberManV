@@ -1,5 +1,10 @@
 // Action Types
-import { NEW_BOMB, MAJ_BOMB, RESET } from '../actions/bomb';
+import {
+  NEW_BOMB,
+  MAJ_BOMB,
+  RESET,
+  EXPLOSE,
+} from '../actions/bomb';
 
 // Initial State
 const initialState = {
@@ -26,6 +31,12 @@ const bombesReducer = (state = initialState, action = {}) => {
         ...state,
         totalBombe: 0,
         bombes: [],
+      };
+    case EXPLOSE:
+      return {
+        ...state,
+        bombes: state.bombes.map(
+          (bombe) => bombe.id === action.id ? {...bombe, explose: true, timerBombe: 0}: bombe),
       };
     default:
       return state;

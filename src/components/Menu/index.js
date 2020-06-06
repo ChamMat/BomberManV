@@ -4,6 +4,12 @@ import StyledMusique from './StyledMusique';
 
 const Musique = (props) => {
 
+    const {
+        musiqueAmbiance,
+        musique,
+        setMusique,
+    } = props;
+
     const pause = props.pause;
 
     // if (props.musiqueAmbiance && !props.musique){
@@ -23,14 +29,18 @@ const Musique = (props) => {
 
 
     const handleClickVolumeMusiquePlus = () => {
+        props.setCurrentTime(props.musiqueAmbiance.currentTime);
         props.volumeMusiquePlus();
     };
 
     const handleClickVolumeMusiqueMoin = () => {
+        props.setCurrentTime(props.musiqueAmbiance.currentTime);
         props.volumeMusiqueMoin();
     };
 
     const handleClickVolumeExplosionPlus = () => {
+        props.setCurrentTime(props.musiqueAmbiance.currentTime);
+
         let volume = props.volumeExplosion +0.1;
         if (volume > 1){
             volume = 1;
@@ -43,6 +53,8 @@ const Musique = (props) => {
     };
 
     const handleClickVolumeExplosionMoin = () => {
+        props.setCurrentTime(props.musiqueAmbiance.currentTime);
+
         let volume = props.volumeExplosion -0.1;
         if (volume < 0){
             volume = 0;
@@ -54,23 +66,24 @@ const Musique = (props) => {
     };
 
     const handleClickMenuPrincipal = () => {
+        props.setCurrentTime(props.musiqueAmbiance.currentTime);
+
         props.musiqueAmbiance.pause();
         props.newPage('home');
 
     };
 
     useEffect(() => {
-        if (!props.musiqueAmbiance) {
+        if (!musiqueAmbiance) {
             const musique = new Audio('/son/Lost_In_The_Dawn.mp3');
-            props.setMusique(musique);
+            setMusique(musique);
         }else {
-            if (props.musique){
-            props.musiqueAmbiance.play();
-            props.musiqueAmbiance.loop = true;
-            props.musiqueAmbiance.volume= props.volumeMusique;
+            if (musique){
+            musiqueAmbiance.play();
+            musiqueAmbiance.loop = true;
             }
         }
-    },[props]);
+    },[musiqueAmbiance, musique, setMusique]);
 
     const volumeMusique = props.volumeMusique * 10;
     const volumeExplosion = props.volumeExplosion * 10;

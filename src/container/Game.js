@@ -2,7 +2,12 @@ import { connect } from 'react-redux';
 
 // Du composant qui a besoin de data ou d'actions
 import { majPersos, resetPerso } from 'actions/majPerso';
-import { setNewBomb, majBomb, resetBombe } from 'actions/bomb';
+import {
+  setNewBomb,
+  majBomb,
+  resetBombe,
+  explose,
+} from 'actions/bomb';
 import Game from 'components/Game/index';
 
 
@@ -36,6 +41,9 @@ const mapDispatchToProps = (dispatch) => ({
   newGamePerso: (value) => {
     dispatch(resetPerso(value))
   },
+  bombeExplose: (id) => {
+    dispatch(explose(id))
+  }
 });
 
 // création du lien : container

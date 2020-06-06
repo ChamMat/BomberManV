@@ -6,6 +6,7 @@ export const VOLUME_MUSIQUE_MOIN = 'VOLUME_MUSIQUE_MOIN';
 export const VOLUME_EXPLOSION_PLUS = 'VOLUME_EXPLOSION_PLUS';
 export const VOLUME_EXPLOSION_MOIN = 'VOLUME_EXPLOSION_MOIN';
 export const CHANGE_PAGE = 'CHANGE_PAGE';
+export const SAVE_MUSIQUE_CURRENTTIME = 'SAVE_MUSIQUE_CURRENTTIME';
 
 
 // Creators
@@ -40,3 +41,10 @@ export const changePage = (value) => {
   type: CHANGE_PAGE,
   page: value,
 })}
+
+export const saveCurrentTime = (value) => {
+  return({
+    type: SAVE_MUSIQUE_CURRENTTIME,
+    currentTime: value,
+  })
+}

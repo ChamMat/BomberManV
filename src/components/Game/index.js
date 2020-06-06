@@ -23,6 +23,7 @@ const Game = (props) => {
         keyInput,
         newGameBomb,
         newGamePerso,
+        bombeExplose,
     } = props;
    
 
@@ -57,7 +58,7 @@ const Game = (props) => {
             });
 
             // =====================MAJ des mort=================
-            //  On récupère les données mises à jours et on regarde si des bombes on tué des joueurs:
+            //  On récupère les données mises à jours et on regarde si des bombes on tué des joueurs ou explosé d'autre bombes:
 
             // Pour chaque bombe qui explose:
 
@@ -84,6 +85,19 @@ const Game = (props) => {
 
                         }
                     })
+
+                    // On vérifi ensuite si d'autre bombes se trouve dans l'explosion:
+
+                    Object.values(majBomb).forEach((bombe2) => {
+                        const bombe2X = bombe2.posX;
+                        const bombe2Y = bombe2.posY;
+                        if (bombe2X > bombeX- bombeWidth && bombe2X < bombeX + bombeWidth){
+                            if (bombe2Y > bombeY + bombeHeightTop && bombe2Y < bombeY + bombeHeightBottom)
+                            {
+                                bombeExplose(bombe2.id);
+                            }
+                        }
+                    });
                 }
             });
 
