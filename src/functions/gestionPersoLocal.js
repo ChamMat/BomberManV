@@ -2,7 +2,7 @@ import platforms from 'datas/platforms';
 
 import majKeyLocal from './gestionPersoLocal/majKeyLocal';
 
-const gestionPersoLocal = (perso, keyInput, newBomb, bombesId) => {
+const gestionPersoLocal = (perso, keyInput, newBomb, bombesId, nouvelleBombe) => {
     let {
         actif,
         mort,
@@ -24,6 +24,9 @@ const gestionPersoLocal = (perso, keyInput, newBomb, bombesId) => {
         keys,
         playerBomb,
     } = perso;
+
+
+    playerBomb.bombeMax += nouvelleBombe;
 
     if (!mort) {
 
@@ -224,12 +227,14 @@ const gestionPersoLocal = (perso, keyInput, newBomb, bombesId) => {
 
 
             // note: bomb est le boolean de la touche pour poser une bombe
-        if (bomb && reposBombe) {
+        if (bomb && reposBombe && playerBomb.bombeMax > 0) {
             reposBombe = false;
             const timerBombe = playerBomb.timer;
             const posXBombe = posX + 1;
+
             newBomb({
                 id: bombesId,
+                proprio: localId,
                 active: true,
                 posX: posXBombe,
                 posY,
@@ -240,6 +245,7 @@ const gestionPersoLocal = (perso, keyInput, newBomb, bombesId) => {
                 explosion: false,
                 danger: false,
             });
+            playerBomb.bombeMax -=1;
         }
 
         if (!bomb) {
@@ -387,6 +393,7 @@ const gestionPersoLocal = (perso, keyInput, newBomb, bombesId) => {
         }
         
     }
+
 
     return {
         actif,

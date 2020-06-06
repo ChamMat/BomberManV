@@ -34,11 +34,14 @@ const Game = (props) => {
             // Interval de temps. C'est ici que la boucle logique s'effectue.
 
             const majBomb = [];
+            const compteurBombe = []; // Sert à compter les bombes désactivé pour les rendre aux jouerus
 
             Object.values(bombes.bombes).forEach((bombe) => {
                 const bombeMiseAJour = gestionBombes(bombe);
-                if (bombeMiseAJour) {
+                if (bombeMiseAJour && bombeMiseAJour.active) {
                     majBomb.push(bombeMiseAJour);
+                }else {
+                    compteurBombe.push(bombeMiseAJour);
                 }
             });
 
@@ -51,7 +54,13 @@ const Game = (props) => {
             const majPerso = [];
             Object.values(persosLocal).forEach(perso => {
                 // console.log('JOUEUR: ', perso.localId);
-                const persoAjour = gestionPersoLocal(perso, keyInput, newBomb, (bombes.totalBombe + Math.random()));
+                let nouvelleBombe = 0;
+                compteurBombe.forEach((bombeDesactive) => {
+                    if (bombeDesactive === perso.localId) {
+                        nouvelleBombe +=1;
+                    }
+                })
+                const persoAjour = gestionPersoLocal(perso, keyInput, newBomb, (bombes.totalBombe + Math.random()), nouvelleBombe);
                 if (persoAjour.actif) {
                     majPerso.push(persoAjour);
                 }
@@ -94,7 +103,9 @@ const Game = (props) => {
                         if (bombe2X > bombeX- bombeWidth && bombe2X < bombeX + bombeWidth){
                             if (bombe2Y > bombeY + bombeHeightTop && bombe2Y < bombeY + bombeHeightBottom)
                             {
-                                bombeExplose(bombe2.id);
+                                if(!bombe2.explosion) {
+                                    bombeExplose(bombe2.id);
+                                }
                             }
                         }
                     });

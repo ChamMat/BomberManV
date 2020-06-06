@@ -25,7 +25,7 @@ export default {
             bomb: false,
           },
           playerBomb: {
-            nbr: 3,
+            bombeMax: 10,
             timer: 3000,
           }
         },
@@ -54,8 +54,8 @@ export default {
             bomb: false,
           },
           playerBomb: {
-            nbr: 3,
             timer: 3000,
+            bombeMax: 10,
           }
         }
       ],

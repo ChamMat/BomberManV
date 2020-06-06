@@ -5,6 +5,7 @@ const gestionBombes = (bombe) => {
      // Ici notre logique des bombes:
      let {
         id,
+        proprio,
         active,
         posX,
         posY,
@@ -154,6 +155,7 @@ const gestionBombes = (bombe) => {
         if (active){
         return ({
             id,
+            proprio,
             active,
             posX,
             posY,
@@ -165,7 +167,7 @@ const gestionBombes = (bombe) => {
             danger,
         });
     }
-    return false;
+    return proprio; // dans le cas ou la bombe est fini, on rend une bombe à son propriétaire
 
 };
 
