@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 
+import persosLocalReset from 'datas/persoLocal';
+
 import StyledMusique from './StyledMusique';
 
 const Musique = (props) => {
@@ -8,7 +10,14 @@ const Musique = (props) => {
         musiqueAmbiance,
         musique,
         setMusique,
+        finDePartie,
+        persos,
+        totaleBombe,
+        resetMenu,
+        bombReset,
+        persoReset,
     } = props;
+
 
     const pause = props.pause;
 
@@ -73,6 +82,14 @@ const Musique = (props) => {
 
     };
 
+    const handleClickRejouer = () => {
+        musiqueAmbiance.pause();
+        props.newPage('localPVP');
+        resetMenu();
+        bombReset();
+        persoReset(persosLocalReset.persosLocal);
+    };
+
     useEffect(() => {
         if (!musiqueAmbiance) {
             const musique = new Audio('/son/Lost_In_The_Dawn.mp3');
@@ -88,6 +105,13 @@ const Musique = (props) => {
     const volumeMusique = props.volumeMusique * 10;
     const volumeExplosion = props.volumeExplosion * 10;
 
+    const victoire = () => {
+        if (persos.length === 0){
+            return 'Match Nule!';
+        }
+        return 'Victoire!'
+    }
+
     return (
         <StyledMusique>
             <div
@@ -95,7 +119,7 @@ const Musique = (props) => {
                 onClick={handleMenu}    
             />
 
-            { pause && 
+            { pause && !finDePartie &&
                 <div className="fondNoir">
                     <div
                         className="menuModal"
@@ -136,6 +160,20 @@ const Musique = (props) => {
                         
                     </div>
                 </div>
+            }
+
+            {finDePartie && 
+                <div
+                        className="menuModal"
+                    >
+                        <h2>{victoire()}</h2>
+
+                        <p>Il vous a fallu {totaleBombe} bombes!</p>
+
+                        <button onClick={handleClickMenuPrincipal}>Revenir au menu principal</button>
+                        <button onClick={handleClickRejouer}>Rejouer</button>
+                        
+                    </div>
             }
         </StyledMusique>
     );

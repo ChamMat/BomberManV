@@ -8,6 +8,8 @@ import {
   VOLUME_EXPLOSION_MOIN,
   CHANGE_PAGE,
   SAVE_MUSIQUE_CURRENTTIME,
+  FIN_DE_PARTIE,
+  RESET,
 } from '../actions/menu';
 
 // Initial State
@@ -28,7 +30,7 @@ const menuReducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case PAUSE:
         const pause = () => {
-            if (state.pause){
+            if (state.pause && !state.finDePartie){
                 return false;
             }
             return true;
@@ -92,6 +94,7 @@ const menuReducer = (state = initialState, action = {}) => {
             page: action.page,
             musiquecurrentTime: 0,
             pause: false,
+            finDePartie: false,
             musiqueAmbiance: null,
           }
 
@@ -99,6 +102,23 @@ const menuReducer = (state = initialState, action = {}) => {
             return {
               ...state,
               musiquecurrentTime: action.currentTime,
+            }
+
+          case FIN_DE_PARTIE:
+            return {
+              ...state,
+              pause: true,
+              finDePartie: true,
+          }
+
+          case RESET:
+            return {
+              ...state,
+              pause: false,
+              finDePartie: false,
+              musique: true,
+              musiquecurrentTime: 0,
+              musiqueAmbiance: null,
             }
 
     default:

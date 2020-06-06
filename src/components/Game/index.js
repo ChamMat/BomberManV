@@ -15,7 +15,7 @@ import Bombes from './Bombes';
 
 const Game = (props) => {
     const {
-        persosLocal,
+        persoActif,
         maj,
         bombes,
         newBomb,
@@ -24,15 +24,15 @@ const Game = (props) => {
         newGameBomb,
         newGamePerso,
         bombeExplose,
+        endGame,
     } = props;
    
 
     useInterval(() => {
-
         if (!props.pause) {
             // console.log("=========NEW TILT============");
             // Interval de temps. C'est ici que la boucle logique s'effectue.
-
+            
             const majBomb = [];
             const compteurBombe = []; // Sert à compter les bombes désactivé pour les rendre aux jouerus
 
@@ -52,7 +52,12 @@ const Game = (props) => {
             // Pour chaque personnage, on créé un objet "image" avec les valeurs mise à jours.
             // Ce sont ces valeurs qui sont transmises au reducer de redux.
             const majPerso = [];
-            Object.values(persosLocal).forEach(perso => {
+            Object.values(persoActif).forEach(perso => {
+
+                // if(perso.localId === 0) {
+                //     console.log(perso.playerBomb.bombeMax);
+                // }
+
                 // console.log('JOUEUR: ', perso.localId);
                 let nouvelleBombe = 0;
                 compteurBombe.forEach((bombeDesactive) => {
@@ -65,6 +70,7 @@ const Game = (props) => {
                     majPerso.push(persoAjour);
                 }
             });
+
 
             // =====================MAJ des mort=================
             //  On récupère les données mises à jours et on regarde si des bombes on tué des joueurs ou explosé d'autre bombes:
@@ -113,6 +119,10 @@ const Game = (props) => {
             });
 
             maj(majPerso);
+
+            if (majPerso.length <= 1){
+                endGame();
+            }
         }
 
 
@@ -127,8 +137,8 @@ const Game = (props) => {
     return (
         <StyledGame>
             {   // On affiche les persos
-                persosLocal &&
-                persosLocal.map((perso)=>(
+                persoActif &&
+                persoActif.map((perso)=>(
                     <Perso
                         key={perso.localId}
                         datas={perso}
@@ -153,7 +163,7 @@ const Game = (props) => {
 };
 
 Game.propTypes = {
-    persosLocal: PropTypes.array.isRequired,
+    persoActif: PropTypes.array.isRequired,
     bombes: PropTypes.object.isRequired,
     maj: PropTypes.func.isRequired,
 };

@@ -3,7 +3,7 @@ import { MAJ_PERSOS, RESET } from '../actions/majPerso';
 
 // Initial State
 const initialState = {
-  persosLocal: [],
+  persoActif: [],
 };
 
 // Reducer
@@ -12,13 +12,13 @@ const persoReducer = (state = initialState, action = {}) => {
     case MAJ_PERSOS:
       return {
         ...state,
-        persosLocal: action.persosLocal,
+        persoActif: action.persoActif,
       };
     case RESET:
       return {
         ...state,
-        persosLocal: action.value,
-      }
+        persoActif: action.value,
+      };
     default:
       return state;
   }

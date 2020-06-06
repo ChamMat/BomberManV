@@ -7,6 +7,8 @@ export const VOLUME_EXPLOSION_PLUS = 'VOLUME_EXPLOSION_PLUS';
 export const VOLUME_EXPLOSION_MOIN = 'VOLUME_EXPLOSION_MOIN';
 export const CHANGE_PAGE = 'CHANGE_PAGE';
 export const SAVE_MUSIQUE_CURRENTTIME = 'SAVE_MUSIQUE_CURRENTTIME';
+export const FIN_DE_PARTIE = 'FIN_DE_PARTIE';
+export const RESET = 'RESET';
 
 
 // Creators
@@ -47,4 +49,16 @@ export const saveCurrentTime = (value) => {
     type: SAVE_MUSIQUE_CURRENTTIME,
     currentTime: value,
   })
+}
+
+export const finDePartie = () => {
+  return{
+    type: FIN_DE_PARTIE,
+  }
+}
+
+export const menuReset = () => {
+  return {
+    type: RESET,
+  }
 }

@@ -10,7 +10,12 @@ import {
   explosionMoin,
   changePage,
   saveCurrentTime,
+  menuReset,
 } from 'actions/menu';
+
+import { resetBombe } from 'actions/bomb';
+import { resetPerso } from 'actions/majPerso';
+
 
 import Musique from 'components/Menu/index';
 
@@ -26,6 +31,10 @@ const mapStateToProps = (state) => {
   volumeMusique: state.menu.volumeMusique,
   volumeExplosion: state.menu.volumeExplosion,
   ambianceMusiqueCurrentTime: state.menu.musiquecurrentTime,
+  finDePartie: state.menu.finDePartie,
+  persos: state.perso.persoActif,
+  totaleBombe: state.bombes.totalBombe,
+  
 })};
 
 // == Actions / dispatch
@@ -62,7 +71,19 @@ const mapDispatchToProps = (dispatch) => ({
 
   setCurrentTime: (value) => {
     dispatch(saveCurrentTime(value))
-  }
+  },
+
+  resetMenu: () => {
+    dispatch(menuReset())
+  },
+
+  bombReset: () => {
+    dispatch(resetBombe())
+  },
+
+  persoReset: (value) => {
+    dispatch(resetPerso(value))
+  },
 
 });
 

@@ -8,6 +8,7 @@ import {
   resetBombe,
   explose,
 } from 'actions/bomb';
+import { finDePartie } from 'actions/menu';
 import Game from 'components/Game/index';
 
 
@@ -16,7 +17,7 @@ import Game from 'components/Game/index';
 // On prépare un objet avec les props attendues par le composant
 const mapStateToProps = (state) => {
   return ({
-  persosLocal: state.perso.persosLocal,
+  persoActif: state.perso.persoActif,
   keyInput: state.keysInput,
   bombes: state.bombes,
   pause: state.menu.pause,
@@ -26,8 +27,8 @@ const mapStateToProps = (state) => {
 // Notre composant à besoin d'agir sur le state ?
 // On prépare un objet avec les props attendues par le composant
 const mapDispatchToProps = (dispatch) => ({
-  maj: (persosLocal) => {
-    dispatch(majPersos(persosLocal));
+  maj: (persoActif) => {
+    dispatch(majPersos(persoActif));
   },
   newBomb: (value) => {
     dispatch(setNewBomb(value))
@@ -43,7 +44,10 @@ const mapDispatchToProps = (dispatch) => ({
   },
   bombeExplose: (id) => {
     dispatch(explose(id))
-  }
+  },
+  endGame: () => {
+    dispatch(finDePartie())
+  },
 });
 
 // création du lien : container
