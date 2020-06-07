@@ -9,6 +9,7 @@ export const CHANGE_PAGE = 'CHANGE_PAGE';
 export const SAVE_MUSIQUE_CURRENTTIME = 'SAVE_MUSIQUE_CURRENTTIME';
 export const FIN_DE_PARTIE = 'FIN_DE_PARTIE';
 export const RESET = 'RESET';
+export const SET_NBR_JOUEUR = 'SET_NBR_JOUEUR';
 
 
 // Creators
@@ -60,5 +61,12 @@ export const finDePartie = () => {
 export const menuReset = () => {
   return {
     type: RESET,
+  }
+}
+
+export const nombreJoueur = (value) => {
+  return {
+    type: SET_NBR_JOUEUR,
+    nombreJoueur: value,
   }
 }

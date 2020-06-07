@@ -10,6 +10,7 @@ import {
   SAVE_MUSIQUE_CURRENTTIME,
   FIN_DE_PARTIE,
   RESET,
+  SET_NBR_JOUEUR,
 } from '../actions/menu';
 
 // Initial State
@@ -21,6 +22,7 @@ const initialState = {
   musiquecurrentTime: 0,
   volumeExplosion: 0.7,
   page: 'home',
+  nombreJoueur: '0',
 };
 
 let volume;
@@ -119,6 +121,12 @@ const menuReducer = (state = initialState, action = {}) => {
               musique: true,
               musiquecurrentTime: 0,
               musiqueAmbiance: null,
+            }
+
+          case SET_NBR_JOUEUR:
+            return {
+              ...state,
+              nombreJoueur: action.nombreJoueur,
             }
 
     default:

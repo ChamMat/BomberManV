@@ -116,9 +116,10 @@ const Musique = (props) => {
 
     const victoire = () => {
         if (persos.length === 0){
-            return 'Match Nule!';
+            return 'Match Nul!';
         }
-        return 'Victoire!'
+        console.log(persos);
+        return `Victoire ${persos[0].name}`;
     }
 
     return (

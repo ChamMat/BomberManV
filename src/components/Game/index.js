@@ -25,11 +25,14 @@ const Game = (props) => {
         newGamePerso,
         bombeExplose,
         endGame,
+        setNombreJoueur,
+        nombreJoueur,
     } = props;
    
 
     useInterval(() => {
-        if (!props.pause) {
+        
+        if (!props.pause && nombreJoueur > 0) {
             // console.log("=========NEW TILT============");
             // Interval de temps. C'est ici que la boucle logique s'effectue.
             
@@ -130,7 +133,6 @@ const Game = (props) => {
 
     useEffect(() => {
         newGameBomb();
-        console.log(persosLocalReset.persosLocal);
         newGamePerso(persosLocalReset.persosLocal.map(perso => {
             const playerBomb = {
                 bombeMax: perso.playerBomb.bombeMax,
@@ -141,7 +143,8 @@ const Game = (props) => {
                 playerBomb: playerBomb,
             };
         }));
-    }, [newGameBomb, newGamePerso]);
+        setNombreJoueur(persosLocalReset.persosLocal.length);
+    }, [newGameBomb, newGamePerso, setNombreJoueur]);
 
 
     return (

@@ -8,7 +8,7 @@ import {
   resetBombe,
   explose,
 } from 'actions/bomb';
-import { finDePartie } from 'actions/menu';
+import { finDePartie, nombreJoueur } from 'actions/menu';
 import Game from 'components/Game/index';
 
 
@@ -21,6 +21,7 @@ const mapStateToProps = (state) => {
   keyInput: state.keysInput,
   bombes: state.bombes,
   pause: state.menu.pause,
+  nombreJoueur: state.menu.nombreJoueur,
 })};
 
 // == Actions / dispatch
@@ -48,6 +49,9 @@ const mapDispatchToProps = (dispatch) => ({
   endGame: () => {
     dispatch(finDePartie())
   },
+  setNombreJoueur: (value) => {
+    dispatch(nombreJoueur(value));
+  }
 });
 
 // création du lien : container
