@@ -130,7 +130,17 @@ const Game = (props) => {
 
     useEffect(() => {
         newGameBomb();
-        newGamePerso(persosLocalReset.persosLocal);
+        console.log(persosLocalReset.persosLocal);
+        newGamePerso(persosLocalReset.persosLocal.map(perso => {
+            const playerBomb = {
+                bombeMax: perso.playerBomb.bombeMax,
+                timer: perso.playerBomb.timer,
+            };
+            return {
+                ...perso,
+                playerBomb: playerBomb,
+            };
+        }));
     }, [newGameBomb, newGamePerso]);
 
 

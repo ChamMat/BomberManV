@@ -87,7 +87,16 @@ const Musique = (props) => {
         props.newPage('localPVP');
         resetMenu();
         bombReset();
-        persoReset(persosLocalReset.persosLocal);
+        persoReset(persosLocalReset.persosLocal.map(perso => {
+            const playerBomb = {
+                bombeMax: perso.playerBomb.bombeMax,
+                timer: perso.playerBomb.timer,
+            };
+            return {
+                ...perso,
+                playerBomb: playerBomb,
+            };
+        }));
     };
 
     useEffect(() => {
