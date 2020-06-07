@@ -146,7 +146,6 @@ const Game = (props) => {
         setNombreJoueur(persosLocalReset.persosLocal.length);
     }, [newGameBomb, newGamePerso, setNombreJoueur]);
 
-
     return (
         <StyledGame>
             {   // On affiche les persos

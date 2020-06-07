@@ -18,7 +18,7 @@ const initialState = {
   pause: false,
   finDePartie: false,
   musique: true,
-  volumeMusique: 0,
+  volumeMusique: 0.2,
   musiquecurrentTime: 0,
   volumeExplosion: 0.7,
   page: 'home',
