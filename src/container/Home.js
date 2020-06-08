@@ -13,7 +13,7 @@ const mapStateToProps = (state) => {
   return ({
   page: state.menu.page,
   musiqueMenu: state.menu.musiqueMenu,
-  volume: state.menu.volume,
+  volume: state.menu.volumeMusique,
 
 })};
 

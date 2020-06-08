@@ -2,7 +2,7 @@ import platforms from 'datas/platforms';
 
 import majKeyLocal from './gestionPersoLocal/majKeyLocal';
 
-const gestionPersoLocal = (perso, keyInput, newBomb, bombesId, nouvelleBombe, bonus, bonusReset) => {
+const gestionPersoLocal = (perso, keyInput, newBomb, bombesId, nouvelleBombe, bonus, bonusReset, volume) => {
     let {
         actif,
         mort,
@@ -280,16 +280,16 @@ const gestionPersoLocal = (perso, keyInput, newBomb, bombesId, nouvelleBombe, bo
 
 
             // D'abord on regarde si le personnage est sur une plateforme en X
-            if (posX > platLeft -2.3 && posX < platLeft + platWidth -.3) {
+            if (posX > platLeft -2.5 && posX < platLeft + platWidth -.5) {
 
                 // Si le personnage est au dessu ou en dessou d'une plateforme, on regarde si est en dessous ou au dessus
 
-            if (playerFoot > platTop -1 && playerFoot -1 < parseInt(platTop) + parseInt(platHeight)) {
+            if (playerFoot >= platTop && playerFoot < parseInt(platTop) + parseInt(platHeight)) {
                 // Ici, on est sur une plateform
                 chute = false;
                 jumpPower = 0;
                 // Cette ligne sert à mettre tout les perso sur le même niveau
-                posY = platTop - 5.2;
+                posY = platTop - 5;
                     // posY = platTop;
             }
             if (posY >= platTop && posY <= parseInt(platTop) + parseInt(platHeight)){
@@ -313,10 +313,24 @@ const gestionPersoLocal = (perso, keyInput, newBomb, bombesId, nouvelleBombe, bo
         if (bonus.actif) {
             if (posX + width > bPosX && posX < bPosX + bWidth){
                 if ( posY + height > bPosY && posY < bPosY + bHeight){
+
+                    
                     if (bonus.bonusType === 'bombBonus') {
                         playerBomb.bombeMax += 1;
+                        const bonusSon = new Audio('/son/sfx_coin_double1.wav');
+                        if (volume <= .4) {
+                            volume = .4;
+                        }
+                        bonusSon.volume = volume-.4;
+                        bonusSon.play();
                     }
                     if (bonus.bonusType === 'speedBonus') {
+                        const bonusSon = new Audio('/son/sfx_coin_cluster9.wav');
+                        if (volume <= .4) {
+                            volume = .4;
+                        }
+                        bonusSon.volume = volume-.4;
+                        bonusSon.play();
                         vitesse += .05;
                         if (vitesse > .9) {
                             vitesse = .9;

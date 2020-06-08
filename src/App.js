@@ -140,7 +140,7 @@ const handleKeyUp = (evt) => {
 
       {page==='localPVP' &&
         <div>
-          <Game />
+          <Game platforms={platformData.platforms} />
           <Menu />
         </div>
       }

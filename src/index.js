@@ -22,3 +22,16 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
+
+
+//Musique by SketchyLogic https://opengameart.org/users/sketchylogic
+
+// Metal Musique by azazel42 https://opengameart.org/users/azazel42
+
+//Sound by SubspaceAudio https://juhanijunkala.com/
+
+//Explosion by Lamoot https://opengameart.org/users/lamoot
+
+// Background by ansimuz https://www.patreon.com/ansimuz
+
+// Hero by grafxkid https://grafxkid.tumblr.com/

@@ -43,6 +43,9 @@ const Musique = (props) => {
 
 
     const handleMenu = () => {
+        const sonMenu = new Audio('/son/sfx_sounds_button6.wav');
+        sonMenu.volume = .2;
+        sonMenu.play();
         props.dispatchPause();
     };
 
@@ -85,6 +88,10 @@ const Musique = (props) => {
     };
 
     const handleClickMenuPrincipal = () => {
+        const sonMenu = new Audio('/son/sfx_sounds_button6.wav');
+        sonMenu.volume = .2;
+        sonMenu.play();
+
         props.setCurrentTime(props.musiqueAmbiance.currentTime);
 
         props.musiqueAmbiance.pause();
@@ -93,6 +100,10 @@ const Musique = (props) => {
     };
 
     const handleClickRejouer = () => {
+        const sonMenu = new Audio('/son/sfx_sounds_button6.wav');
+        sonMenu.volume = .2;
+        sonMenu.play();
+
         musiqueAmbiance.pause();
         props.newPage('localPVP');
         resetMenu();

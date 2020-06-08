@@ -6,9 +6,13 @@ const Home = (props) => {
     const {
         setMusique,
         musiqueMenu,
+        volume,
     } = props;
 
     const handleClickLocalPVP = () => {
+        const sonMenu = new Audio('/son/sfx_sounds_button6.wav');
+        sonMenu.volume = .2;
+        sonMenu.play();
         musiqueMenu.pause();
         setMusique('musiqueMenu', '');
         props.newPage('localPVP');
@@ -21,7 +25,7 @@ const Home = (props) => {
         }else {
             musiqueMenu.play();
             musiqueMenu.loop = true;
-            musiqueMenu.volume=.3;
+            musiqueMenu.volume=volume;
         }
     },[musiqueMenu, setMusique]);
 

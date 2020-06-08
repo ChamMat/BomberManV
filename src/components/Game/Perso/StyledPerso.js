@@ -8,7 +8,7 @@ const StyledPerso = styled.div.attrs((props) => {
 
     return ({
         style: {
-            top: posY + 'vh',
+            top: (posY+.3) + 'vh',
             left: posX + 'vw',
             // transform: dir,
         },
@@ -99,8 +99,8 @@ const StyledPerso = styled.div.attrs((props) => {
 
 
         .perso {
-            width:3vw;
-            height:7vh;
+            width:5vh;
+            height:5vh;
             background-size:contain;
             background-repeat:no-repeat;
             background-position:center;

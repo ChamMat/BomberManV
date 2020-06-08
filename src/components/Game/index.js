@@ -32,9 +32,14 @@ const Game = (props) => {
         bonus,
         setBonusPosY,
         setBonusReset,
+        platforms,
+        volumeBombe,
     } = props;
+
+
+
    
-    const radom = (max, min) => {
+    const random = (max, min) => {
         const rand= Math.floor(Math.random() * (Math.floor(max) - Math.ceil(min) +1)) + Math.ceil(min);
         return rand;
     }
@@ -45,11 +50,22 @@ const Game = (props) => {
             // console.log("=========NEW TILT============");
             // Interval de temps. C'est ici que la boucle logique s'effectue.
             if (!bonus.actif){
-                if(radom(100, 1) === 1) {
-                    const posX = radom(80,20);
-                    const posY = 0;
+                if(random(100, 1) === 1) { // Si la valeur est égale à 1, on génére un bonus à se tilt.
+
+                    //On sélectionne aléatoirement la plateforme sur laquel le bonus va se poser
+
+                    const selectedPlatform = random (platforms.length-1, 0);
+                    //Une fois la plateforme séléctionné, on selectionne une position aléatoire sur X
+                    const selectedPlatformMinX = platforms[selectedPlatform].left;
+                    const selectefPlatformMaxX = parseInt(selectedPlatformMinX) + parseInt(platforms[selectedPlatform].width);
+
+                    const bonusWidth = 2.5;
+                    const platformHeight= 3;
+                    const posX = parseInt(random(selectefPlatformMaxX,selectedPlatformMinX)) - bonusWidth;
+                    const posY = platforms[selectedPlatform].top - platformHeight;
+
                     const type = () => {
-                        if(radom(2,1) === 1) {
+                        if(random(2,1) === 1) {
                             return 'bombBonus';
                         }
                         return 'speedBonus';
@@ -62,9 +78,7 @@ const Game = (props) => {
                     })
                 }
             }else {
-                if (bonus.posY < 100) {
-                    setBonusPosY();
-                }else {
+                if (bonus.posY > 100) {
                     setBonusReset();
                 }
             }
@@ -73,7 +87,7 @@ const Game = (props) => {
             const compteurBombe = []; // Sert à compter les bombes désactivé pour les rendre aux jouerus
 
             Object.values(bombes.bombes).forEach((bombe) => {
-                const bombeMiseAJour = gestionBombes(bombe);
+                const bombeMiseAJour = gestionBombes(bombe, volumeBombe);
                 if (bombeMiseAJour && bombeMiseAJour.active) {
                     majBomb.push(bombeMiseAJour);
                 }else {
@@ -104,6 +118,7 @@ const Game = (props) => {
                     nouvelleBombe,
                     bonus,
                     setBonusReset,
+                    volumeBombe,
                     );
                 if (persoAjour.actif) {
                     majPerso.push(persoAjour);

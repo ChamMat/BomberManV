@@ -28,6 +28,7 @@ const mapStateToProps = (state) => {
   pause: state.menu.pause,
   nombreJoueur: state.menu.nombreJoueur,
   bonus: state.bonus.bonus,
+  volumeBombe: state.menu.volumeExplosion,
 })};
 
 // == Actions / dispatch

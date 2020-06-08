@@ -1,6 +1,6 @@
 import platforms from 'datas/platforms';
 
-const gestionBombes = (bombe) => {
+const gestionBombes = (bombe, volume) => {
 
      // Ici notre logique des bombes:
      let {
@@ -51,8 +51,8 @@ const gestionBombes = (bombe) => {
         explosion = true;
         danger = true;
         image ='explosion00';
-        let explosionSon = new Audio('/son/DeathFlash.flac'); 
-        explosionSon.volume = .7;
+        const explosionSon = new Audio('/son/DeathFlash.flac'); 
+        explosionSon.volume = volume;
         explosionSon.play();
     } else {
         timerBombe -= 25;
