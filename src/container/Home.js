@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 
 // Du composant qui a besoin de data ou d'actions
 import { changePage } from 'actions/menu';
+import { setAmbianceMusic } from 'actions/menu';
 import Home from 'components/Home/index';
 
 
@@ -11,6 +12,9 @@ import Home from 'components/Home/index';
 const mapStateToProps = (state) => {
   return ({
   page: state.menu.page,
+  musiqueMenu: state.menu.musiqueMenu,
+  volume: state.menu.volume,
+
 })};
 
 // == Actions / dispatch
@@ -19,7 +23,11 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   newPage: (value) => {
     dispatch(changePage(value))
-  }
+  },
+  setMusique: (music, value) => {
+    dispatch(setAmbianceMusic(music, value))
+  },
+  
 });
 
 // création du lien : container

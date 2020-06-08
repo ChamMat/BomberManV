@@ -18,8 +18,9 @@ export const pause = () => {
   type: PAUSE,
 })};
 
-export const setAmbianceMusic = (value) => ({
+export const setAmbianceMusic = (music, value) => ({
   type: SET_MUSIC,
+  music,
   value,
 });
 

@@ -44,7 +44,7 @@ const menuReducer = (state = initialState, action = {}) => {
     case SET_MUSIC:
       return {
         ...state,
-        musiqueAmbiance: action.value,
+        [action.music]: action.value,
       };
     case VOLUME_MUSIQUE_PLUS:
       if (state.volumeMusique >= 1){

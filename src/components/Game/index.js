@@ -160,6 +160,7 @@ const Game = (props) => {
             maj(majPerso);
 
             if (majPerso.length <= 1){
+                setBonusReset();
                 endGame();
             }
         }
@@ -168,6 +169,7 @@ const Game = (props) => {
     }, 25); // ==============> nombre de miliseconde entre chaque frame (ideal 25)
 
     useEffect(() => {
+        setBonusReset();
         newGameBomb();
         newGamePerso(persosLocalReset.persosLocal.map(perso => {
             const playerBomb = {
@@ -180,7 +182,7 @@ const Game = (props) => {
             };
         }));
         setNombreJoueur(persosLocalReset.persosLocal.length);
-    }, [newGameBomb, newGamePerso, setNombreJoueur]);
+    }, [newGameBomb, newGamePerso, setNombreJoueur, setBonusReset]);
 
     return (
         <StyledGame>

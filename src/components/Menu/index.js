@@ -16,6 +16,7 @@ const Musique = (props) => {
         resetMenu,
         bombReset,
         persoReset,
+        setBonusReset,
     } = props;
 
     let result;
@@ -95,6 +96,7 @@ const Musique = (props) => {
         musiqueAmbiance.pause();
         props.newPage('localPVP');
         resetMenu();
+        setBonusReset();
         bombReset();
         persoReset(persosLocalReset.persosLocal.map(perso => {
             const playerBomb = {
@@ -110,8 +112,9 @@ const Musique = (props) => {
 
     useEffect(() => {
         if (!musiqueAmbiance) {
-            const musique = new Audio('/son/Lost_In_The_Dawn.mp3');
-            setMusique(musique);
+            const musique = new Audio('/son/BossMain.wav');
+            // Peut être Mercury pour le menu
+            setMusique('musiqueAmbiance', musique);
         }else {
             if (musique){
             musiqueAmbiance.play();

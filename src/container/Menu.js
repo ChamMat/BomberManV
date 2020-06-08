@@ -15,6 +15,7 @@ import {
 
 import { resetBombe } from 'actions/bomb';
 import { resetPerso } from 'actions/majPerso';
+import { bonusReset } from 'actions/bonusAction';
 
 
 import Musique from 'components/Menu/index';
@@ -45,8 +46,8 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(pause());
   },
 
-  setMusique: (value) => {
-    dispatch(setAmbianceMusic(value))
+  setMusique: (music, value) => {
+    dispatch(setAmbianceMusic(music, value))
   },
 
   volumeMusiquePlus: () => {
@@ -83,6 +84,10 @@ const mapDispatchToProps = (dispatch) => ({
 
   persoReset: (value) => {
     dispatch(resetPerso(value))
+  },
+
+  setBonusReset: () => {
+    dispatch(bonusReset())
   },
 
 });
