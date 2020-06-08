@@ -10,6 +10,7 @@ import gestionBombes from 'functions/gestionBombes';
 
 import Perso from './Perso';
 import Bombes from './Bombes';
+import Bonus from 'container/Bonus'
 
 
 
@@ -27,14 +28,46 @@ const Game = (props) => {
         endGame,
         setNombreJoueur,
         nombreJoueur,
+        setNewBonus,
+        bonus,
+        setBonusPosY,
+        setBonusReset,
     } = props;
    
+    const radom = (max, min) => {
+        const rand= Math.floor(Math.random() * (Math.floor(max) - Math.ceil(min) +1)) + Math.ceil(min);
+        return rand;
+    }
 
     useInterval(() => {
         
         if (!props.pause && nombreJoueur > 0) {
             // console.log("=========NEW TILT============");
             // Interval de temps. C'est ici que la boucle logique s'effectue.
+            if (!bonus.actif){
+                if(radom(100, 1) === 1) {
+                    const posX = radom(80,20);
+                    const posY = 0;
+                    const type = () => {
+                        if(radom(2,1) === 1) {
+                            return 'bombBonus';
+                        }
+                        return 'speedBonus';
+                    }
+                    setNewBonus({
+                        actif: true,
+                        posX: posX,
+                        posY: posY,
+                        bonusType: type(),
+                    })
+                }
+            }else {
+                if (bonus.posY < 100) {
+                    setBonusPosY();
+                }else {
+                    setBonusReset();
+                }
+            }
             
             const majBomb = [];
             const compteurBombe = []; // Sert à compter les bombes désactivé pour les rendre aux jouerus
@@ -57,18 +90,21 @@ const Game = (props) => {
             const majPerso = [];
             Object.values(persoActif).forEach(perso => {
 
-                // if(perso.localId === 0) {
-                //     console.log(perso.playerBomb.bombeMax);
-                // }
-
-                // console.log('JOUEUR: ', perso.localId);
                 let nouvelleBombe = 0;
                 compteurBombe.forEach((bombeDesactive) => {
                     if (bombeDesactive === perso.localId) {
                         nouvelleBombe +=1;
                     }
                 })
-                const persoAjour = gestionPersoLocal(perso, keyInput, newBomb, (bombes.totalBombe + Math.random()), nouvelleBombe);
+                const persoAjour = gestionPersoLocal(
+                    perso,
+                    keyInput,
+                    newBomb,
+                    (bombes.totalBombe + Math.random()), // Pour généré une id unique => 1 chance sur 999999999 d'avoir un bug d'affichage non bloquan.
+                    nouvelleBombe,
+                    bonus,
+                    setBonusReset,
+                    );
                 if (persoAjour.actif) {
                     majPerso.push(persoAjour);
                 }
@@ -156,6 +192,10 @@ const Game = (props) => {
                         datas={perso}
                     />
                 ))
+            }
+
+            { bonus.actif &&
+                <Bonus />
             }
 
             {   // On affiche les bombes

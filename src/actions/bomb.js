@@ -1,7 +1,7 @@
 // Types
 export const NEW_BOMB = 'NEW_BOMB';
 export const MAJ_BOMB = 'MAJ_BOMB';
-export const RESET = 'RESET';
+export const RESET_BOMB = 'RESET_BOMB';
 export const EXPLOSE = 'EXPLOSE';
 
 
@@ -20,7 +20,7 @@ export const majBomb = (newTab) => {
 
 export const resetBombe = () => {
   return ({
-    type: RESET,
+    type: RESET_BOMB,
   })
 }
 

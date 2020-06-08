@@ -2,7 +2,7 @@
 import {
   NEW_BOMB,
   MAJ_BOMB,
-  RESET,
+  RESET_BOMB,
   EXPLOSE,
 } from '../actions/bomb';
 
@@ -26,7 +26,7 @@ const bombesReducer = (state = initialState, action = {}) => {
         ...state,
         bombes: action.newTab,
       };
-    case RESET:
+    case RESET_BOMB:
       return {
         ...state,
         totalBombe: 0,

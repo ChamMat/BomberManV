@@ -2,7 +2,7 @@ import platforms from 'datas/platforms';
 
 import majKeyLocal from './gestionPersoLocal/majKeyLocal';
 
-const gestionPersoLocal = (perso, keyInput, newBomb, bombesId, nouvelleBombe) => {
+const gestionPersoLocal = (perso, keyInput, newBomb, bombesId, nouvelleBombe, bonus, bonusReset) => {
     let {
         actif,
         mort,
@@ -23,15 +23,17 @@ const gestionPersoLocal = (perso, keyInput, newBomb, bombesId, nouvelleBombe) =>
         reposBombe,
         keys,
         playerBomb,
+        vitesse,
     } = perso;
 
 
     playerBomb.bombeMax += nouvelleBombe;
 
+    const width = 3;
+    const height = 7;
+
     if (!mort) {
 
-        const vitesse = .7;
-        // const vitesse = .1;
         const gravite = 2;
         
 
@@ -301,6 +303,32 @@ const gestionPersoLocal = (perso, keyInput, newBomb, bombesId, nouvelleBombe) =>
             }
         });
 
+        // GESTION DES BONUS
+        const bPosX = bonus.posX;
+        const bPosY = bonus.posY;
+        const bWidth = 2.5;
+        const bHeight = 3;
+        
+
+        if (bonus.actif) {
+            if (posX + width > bPosX && posX < bPosX + bWidth){
+                if ( posY + height > bPosY && posY < bPosY + bHeight){
+                    if (bonus.bonusType === 'bombBonus') {
+                        playerBomb.bombeMax += 1;
+                    }
+                    if (bonus.bonusType === 'speedBonus') {
+                        vitesse += .05;
+                        if (vitesse > .9) {
+                            vitesse = .9;
+                        }
+                    }
+                    bonusReset();
+                }
+            }
+        }
+
+
+
         // Gestion des collisions en sortie de cadre
             //Gauche
         if (posX < 4) {
@@ -415,6 +443,7 @@ const gestionPersoLocal = (perso, keyInput, newBomb, bombesId, nouvelleBombe) =>
         reposBombe,
         keys,
         playerBomb,
+        vitesse,
     };
 };
 

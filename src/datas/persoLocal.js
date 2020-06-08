@@ -18,6 +18,7 @@ export default {
           chute: false,
           repos: true,
           reposBombe: true,
+          vitesse: .5,
           keys: {
             up: false,
             left: false,
@@ -25,8 +26,8 @@ export default {
             bomb: false,
           },
           playerBomb: {
-            bombeMax: 10,
-            timer: 500,
+            bombeMax: 1,
+            timer: 1500,
           }
         },
         {
@@ -47,6 +48,7 @@ export default {
           chute: false,
           repos: true,
           reposBombe: true,
+          vitesse: .5,
           keys: {
             up: false,
             left: false,
@@ -54,8 +56,8 @@ export default {
             bomb: false,
           },
           playerBomb: {
-            timer: 500,
-            bombeMax: 10,
+            timer: 1500,
+            bombeMax: 1,
           }
         }
       ],

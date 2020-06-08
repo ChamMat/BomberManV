@@ -9,8 +9,8 @@ const StyledPlatform = styled.div.attrs((props) => ({
     },
   }))`
       position:absolute;
-      background-color: #6e6d4e;
-      border: solid .4vh #132b26;
+      background-color: #445544;
+      border: solid .4vh #000;
       border-radius: 3px;
   `;
 

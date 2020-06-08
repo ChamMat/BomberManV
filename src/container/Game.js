@@ -9,6 +9,11 @@ import {
   explose,
 } from 'actions/bomb';
 import { finDePartie, nombreJoueur } from 'actions/menu';
+import {
+  newBonus,
+  bonusPosY,
+  bonusReset
+} from 'actions/bonusAction';
 import Game from 'components/Game/index';
 
 
@@ -22,6 +27,7 @@ const mapStateToProps = (state) => {
   bombes: state.bombes,
   pause: state.menu.pause,
   nombreJoueur: state.menu.nombreJoueur,
+  bonus: state.bonus.bonus,
 })};
 
 // == Actions / dispatch
@@ -51,6 +57,15 @@ const mapDispatchToProps = (dispatch) => ({
   },
   setNombreJoueur: (value) => {
     dispatch(nombreJoueur(value));
+  },
+  setNewBonus: (value) => {
+    dispatch(newBonus(value));
+  },
+  setBonusPosY: () => {
+    dispatch(bonusPosY());
+  },
+  setBonusReset: () => {
+    dispatch(bonusReset());
   }
 });
 

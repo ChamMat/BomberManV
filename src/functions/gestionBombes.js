@@ -108,6 +108,7 @@ const gestionBombes = (bombe) => {
             if (temporisationAnimation >= 4) {
                 image = 'explosion06';
                 temporisationAnimation = 0;
+                danger = false;
             }
         break;
         case 'explosion06':
@@ -120,7 +121,6 @@ const gestionBombes = (bombe) => {
             if (temporisationAnimation >= 4) {
                 image = 'explosion08';
                 temporisationAnimation = 0;
-                danger = false;
             }
         break;
         case 'explosion08':
