@@ -145,13 +145,6 @@ const handleKeyUp = (evt) => {
         </div>
       }
 
-      {/* <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/game/LocalPvP">
-          <Game />
-          <Menu />
-        </Route>
-      </Switch> */}
     </div>
   );
 }

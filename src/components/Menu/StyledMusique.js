@@ -11,14 +11,14 @@ const StyledMusique = styled.div`
         left:0;
     }
     
-    color:#C9B9C9;
+    color:white;
 
     .icon {
         position: relative;
         top:2vh;
         left: 2vh;
-        height:6vh;
-        width: 6vh;
+        height:10vh;
+        width: 10vh;
         background-color: gray;
         border-radius: 100%;
         background-image: url(/image/Engrenage.png);
@@ -33,7 +33,7 @@ const StyledMusique = styled.div`
         width: 50vw;
         height: 80vh;
         border: black solid 1px;
-        background-color: rgba(0,0,0, .5);
+        background-color: rgba(0,0,0, .7);
         border-radius: 3vw;
         border: solid 2vh black;
     }
@@ -65,14 +65,15 @@ const StyledMusique = styled.div`
         margin-top: 8vh;
         width: 100%;
 
-        & button {
+    }
+
+    button {
             font-size: 3vh;
             width: 30vw;
             border: none;
             padding: 1vh;
             border-radius: 4px;
         }
-    }
 
 
     .buttonVolume {
@@ -86,6 +87,33 @@ const StyledMusique = styled.div`
     .volume {
         margin-left: 4vw;
     }
+
+    .resultModal{
+        position:absolute;
+
+        background-color: rgba(0,0,0, .90);
+
+        text-align:center;
+        button {
+            margin-top: 10vh;
+        }
+
+        .bombResult {
+            margin-top:10vh;
+            font-size: 5vh;
+            margin-bottom: 7vh;
+        }
+    }
+
+
+    @media (min-width:500px) {
+        .icon {
+            height:6vh;
+            width: 6vh;
+        }
+
+    }
+
 `;
 
 export default StyledMusique;

@@ -23,7 +23,7 @@ const StyledHome = styled.div`
         border: black solid 1px;
         width: 50vw;
         height: 80vh;
-        background-color: rgba(0,0,0, .5);
+        background-color: rgba(0,0,0, .7);
         border-radius: 3vw;
         border: solid 2vh black;
         display: flex;

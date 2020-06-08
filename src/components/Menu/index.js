@@ -18,6 +18,15 @@ const Musique = (props) => {
         persoReset,
     } = props;
 
+    let result;
+
+    
+    if (totaleBombe > 1) {
+        result = `${totaleBombe} bombes`;
+    }else {
+        result = `${totaleBombe} bombe`;
+    }
+
 
     const pause = props.pause;
 
@@ -173,14 +182,14 @@ const Musique = (props) => {
 
             {finDePartie && 
                 <div
-                        className="menuModal"
+                        className="menuModal resultModal"
                     >
                         <h2>{victoire()}</h2>
 
-                        <p>Il vous a fallu {totaleBombe} bombes!</p>
+                        <p className="bombResult">Il vous a fallu {result}!</p>
 
-                        <button onClick={handleClickMenuPrincipal}>Revenir au menu principal</button>
-                        <button onClick={handleClickRejouer}>Rejouer</button>
+                        <button className="principal" onClick={handleClickMenuPrincipal}>Revenir au menu principal</button>
+                        <button className="rejouer" onClick={handleClickRejouer}>Rejouer</button>
                         
                     </div>
             }
