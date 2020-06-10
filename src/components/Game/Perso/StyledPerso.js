@@ -1,4 +1,8 @@
 import styled from 'styled-components';
+import idle0 from './idle/heroIdle00.png';
+import idle1 from './idle/heroIdle01.png';
+import idle2 from './idle/heroIdle02.png';
+import idle3 from './idle/heroIdle03.png';
 
 const StyledPerso = styled.div.attrs((props) => {
     const {
@@ -35,17 +39,17 @@ const StyledPerso = styled.div.attrs((props) => {
         transform: ${props => props.direction === "right" ? "scaleX(1)" : "scaleX(-1)"};
 
 
-        .idle0 {
-            background-image: url(/image/perso/sprite/idle/heroIdle00.png);
+        .idle0{
+            background-image:url(${idle0});
         }
-        .idle1 {
-            background-image: url(/image/perso/sprite/idle/heroIdle01.png);
+        .idle1{
+            background-image:url(${idle1});
         }
-        .idle2 {
-            background-image: url(/image/perso/sprite/idle/heroIdle02.png);
+        .idle2{
+            background-image:url(${idle2});
         }
-        .idle3 {
-            background-image: url(/image/perso/sprite/idle/heroIdle03.png);
+        .idle3{
+            background-image:url(${idle3});
         }
 
         .walk0 {

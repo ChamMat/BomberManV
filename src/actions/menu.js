@@ -10,9 +10,17 @@ export const SAVE_MUSIQUE_CURRENTTIME = 'SAVE_MUSIQUE_CURRENTTIME';
 export const FIN_DE_PARTIE = 'FIN_DE_PARTIE';
 export const RESET = 'RESET';
 export const SET_NBR_JOUEUR = 'SET_NBR_JOUEUR';
+export const CHARGER = 'CHARGER';
 
 
 // Creators
+export const loadReady = (value) => {
+  return ({
+    type: CHARGER,
+    value: value,
+  })
+};
+
 export const pause = () => {
   return ({
   type: PAUSE,

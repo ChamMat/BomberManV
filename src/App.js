@@ -5,17 +5,27 @@ import Home from './container/Home';
 import Platform from './components/Platform/index';
 import Game from './container/Game';
 import Menu from './container/Menu';
+import PreLoader from './components/PreLoader/index';
+
+import StyledApp from './StyledApp';
 
 import platformData from 'datas/platforms';
 
 function App(props) {
 
+
   const page = props.page;
   const { newKeyInput } = props;
+  const chargePret = props.loadReady;
+  const setLoadReady = props.setLoadReady;
+
+
+  const handlePreloader = () => {
+    setLoadReady(true);
+  };
 
 
 useEffect(() => {
-
   const handleKeyDown = (evt) => {
     let key;
     let value;
@@ -66,6 +76,9 @@ useEffect(() => {
 };
 
 const handleKeyUp = (evt) => {
+
+  evt.preventDefault();
+
     let key;
     let value;
 
@@ -118,34 +131,47 @@ const handleKeyUp = (evt) => {
 },[newKeyInput]);
 
   return (
-    <div className="App">
-      <img className="background bleu" src="/image/background/country-platform-back.png" alt="fond bleu" />
-      <img className="background foret" src="/image/background/country-platform-forest.png" alt="fond foret" />
+    <StyledApp>
 
-      {
-        platformData.platforms.map((platform) => (
-          <Platform 
-            key = {platform.id}
-            top = {platform.top}
-            left = {platform.left}
-            height = {platform.height}
-            width = {platform.width}
-          />
-        ))
+      { !chargePret &&
+       <PreLoader 
+          setLoadReady={setLoadReady}
+          handlePreloader={handlePreloader}  
+        />
       }
 
-      {page==='home' &&
-        <Home />
-      }
+      
+      { chargePret &&
+        <div className="App">
+          <img className="background bleu" src="/image/background/country-platform-back.png" alt="fond bleu" />
+          <img className="background foret" src="/image/background/country-platform-forest.png" alt="fond foret" />
 
-      {page==='localPVP' &&
-        <div>
-          <Game platforms={platformData.platforms} />
-          <Menu />
+          {
+            platformData.platforms.map((platform) => (
+              <Platform 
+                key = {platform.id}
+                top = {platform.top}
+                left = {platform.left}
+                height = {platform.height}
+                width = {platform.width}
+              />
+            ))
+          }
+
+          {page==='home' &&
+            <Home setLoadReady = {setLoadReady} />
+          }
+
+          {page==='localPVP' &&
+            <div>
+              <Game platforms={platformData.platforms} />
+              <Menu />
+            </div>
+          }
+
         </div>
       }
-
-    </div>
+    </StyledApp>
   );
 }
 

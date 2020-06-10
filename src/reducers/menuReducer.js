@@ -11,10 +11,12 @@ import {
   FIN_DE_PARTIE,
   RESET,
   SET_NBR_JOUEUR,
+  CHARGER,
 } from '../actions/menu';
 
 // Initial State
 const initialState = {
+  fichierCharger:false,
   pause: false,
   finDePartie: false,
   musique: true,
@@ -30,6 +32,12 @@ let volume;
 // Reducer
 const menuReducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case CHARGER:
+      return {
+        ...state,
+        fichierCharger : action.value,
+      };
+
     case PAUSE:
         const pause = () => {
             if (state.pause && !state.finDePartie){

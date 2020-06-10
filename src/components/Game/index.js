@@ -30,7 +30,6 @@ const Game = (props) => {
         nombreJoueur,
         setNewBonus,
         bonus,
-        setBonusPosY,
         setBonusReset,
         platforms,
         volumeBombe,
@@ -61,8 +60,8 @@ const Game = (props) => {
 
                     const bonusWidth = 2.5;
                     const platformHeight= 3;
-                    const posX = parseInt(random(selectefPlatformMaxX,selectedPlatformMinX)) - bonusWidth;
-                    const posY = platforms[selectedPlatform].top - platformHeight;
+                    let bonusPosX = parseInt(random(selectefPlatformMaxX,selectedPlatformMinX)) - bonusWidth;
+                    let bonusPosY = platforms[selectedPlatform].top - platformHeight;
 
                     const type = () => {
                         if(random(2,1) === 1) {
@@ -70,10 +69,18 @@ const Game = (props) => {
                         }
                         return 'speedBonus';
                     }
+
+                    if (bonusPosX < 4) {
+                        bonusPosX = 4;
+                    }
+
+                    if (bonusPosX > 93) {
+                        bonusPosX = 93;
+                    }
                     setNewBonus({
                         actif: true,
-                        posX: posX,
-                        posY: posY,
+                        posX: bonusPosX,
+                        posY: bonusPosY,
                         bonusType: type(),
                     })
                 }

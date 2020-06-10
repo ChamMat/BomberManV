@@ -7,9 +7,11 @@ const Home = (props) => {
         setMusique,
         musiqueMenu,
         volume,
+        setLoadReady,
     } = props;
 
     const handleClickLocalPVP = () => {
+        // setLoadReady(false);
         const sonMenu = new Audio('/son/sfx_sounds_button6.wav');
         sonMenu.volume = .2;
         sonMenu.play();
@@ -27,7 +29,7 @@ const Home = (props) => {
             musiqueMenu.loop = true;
             musiqueMenu.volume=volume;
         }
-    },[musiqueMenu, setMusique]);
+    },[musiqueMenu, setMusique, volume]);
 
     return (
         <StyledHome>

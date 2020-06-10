@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 // Du composant qui a besoin de data ou d'actions
-import { changePage } from 'actions/menu';
+import { changePage, loadReady } from 'actions/menu';
 import { changeInput } from 'actions/keyInput'
 import App from '../App';
 
@@ -12,6 +12,7 @@ import App from '../App';
 const mapStateToProps = (state) => {
   return ({
   page: state.menu.page,
+  loadReady: state.menu.fichierCharger,
 })};
 
 // == Actions / dispatch
@@ -23,6 +24,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   newKeyInput: (key, value) => {
     dispatch(changeInput(key, value));
+  },
+  setLoadReady: (value) => {
+    dispatch(loadReady(value));
   },
 });
 

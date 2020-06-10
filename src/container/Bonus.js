@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 
 // Du composant qui a besoin de data ou d'actions
 import Bonus from 'components/Game/Bonus/index';
-import { newBonus } from 'actions/bonusAction';
 
 
 // == Data / state
