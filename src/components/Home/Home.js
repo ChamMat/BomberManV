@@ -50,7 +50,7 @@ const Home = (props) => {
                 }
                 {
                     !loading && !gameReady &&
-                    <button className="button loadEnd" onClick={handleClickLoadEnd}> Play! </button>
+                    <button className="button loadEnd" onTouchStart={handleClickLoadEnd} onClick={handleClickLoadEnd}> Play! </button>
                 }
                 {
                     gameReady &&

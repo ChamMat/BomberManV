@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Pvp from 'components/Pvp/Pvp'
 
 import { endGame, gameStyle } from 'actions/gameSettings.action';
+import { keyInput } from 'actions/keyboardInput.action';
 
 import {
     dataForMajPerso,
@@ -10,7 +11,6 @@ import {
     newBonus,
     bonusReset
 } from 'actions/gameDatas.action';
-import { keyInput } from 'actions/keyboardInput.action';
 
 const mapStateToProps = (state) => {
     return(
@@ -47,7 +47,10 @@ const mapDispatchToProps = (dispatch) => ({
     },
     setGameStyle: (value) => {
         dispatch(gameStyle(value));
-    }
+    },
+    setKeyInput: (key, value) => {
+        dispatch(keyInput(key, value));
+    },
 
 });
 

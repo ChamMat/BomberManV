@@ -36,38 +36,7 @@ function App(props) {
     <AppStyled>
       <div className="App">
         <PreLoader />
-        <div className="buttonsMobil">
-          <div className="buttonMobilWrapper">
-            <div className="buttonDirection">
-              <button
-                className="buttonMobil buttonLeft"
-                name = "ArrowLeft"
-                onTouchStart={handleTouchStart}
-                onTouchEnd={handleTouchEnd}
-              />
-              <button
-                className="buttonMobil buttonRight"
-                name = "ArrowRight"
-                onTouchStart={handleTouchStart}
-                onTouchEnd={handleTouchEnd}
-              />
-            </div>
-            <div className="buttonAction">
-              <button
-                className="buttonMobil buttonAction"
-                name = "ArrowDown"
-                onTouchStart={handleTouchStart}
-                onTouchEnd={handleTouchEnd}
-              />
-              <button
-                className="buttonMobil buttonJump"
-                name = "ArrowUp"
-                onTouchStart={handleTouchStart}
-                onTouchEnd={handleTouchEnd}
-              />
-            </div>
-          </div>
-        </div>
+        
       </div>
     </AppStyled>
   );

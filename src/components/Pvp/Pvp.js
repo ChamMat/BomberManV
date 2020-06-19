@@ -39,6 +39,14 @@ const Pvp = (props) => {
         return rand;
     }
 
+    const handleTouchStart = (evt) => {
+        setKeyInput(evt.target.name, true);
+      }
+    
+    const handleTouchEnd = (evt) => {
+    setKeyInput(evt.target.name, false);
+    }
+
 
     useInterval(()=>{
         let newGameDatas = {
@@ -158,6 +166,38 @@ const Pvp = (props) => {
         { bonus.actif &&
                 <Bonus props={bonus} />
         }
+        <div className="buttonsMobil">
+          <div className="buttonMobilWrapper">
+            <div className="buttonDirection">
+              <button
+                className="buttonMobil buttonLeft"
+                name = "ArrowLeft"
+                onTouchStart={handleTouchStart}
+                onTouchEnd={handleTouchEnd}
+              />
+              <button
+                className="buttonMobil buttonRight"
+                name = "ArrowRight"
+                onTouchStart={handleTouchStart}
+                onTouchEnd={handleTouchEnd}
+              />
+            </div>
+            <div className="buttonAction">
+              <button
+                className="buttonMobil buttonAction"
+                name = "ArrowDown"
+                onTouchStart={handleTouchStart}
+                onTouchEnd={handleTouchEnd}
+              />
+              <button
+                className="buttonMobil buttonJump"
+                name = "ArrowUp"
+                onTouchStart={handleTouchStart}
+                onTouchEnd={handleTouchEnd}
+              />
+            </div>
+          </div>
+        </div>
         { endGame &&
             <GameOver
                 players={gameDatas}
