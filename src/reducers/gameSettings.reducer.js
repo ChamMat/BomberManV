@@ -14,7 +14,7 @@ import {
 
 // Initial State
 const initialState = {
-  gameStyle: '', //default: ''
+  gameStyle: 'localPvp', //default: ''
   endGame: false, //default: false
   music:{
     mercury: '',
@@ -29,7 +29,7 @@ const initialState = {
   },
   menuOpen: false,
   gamePause: false,
-  volumeMusic: .4, // default .4
+  volumeMusic: 0, // default .4
   volumeEffect: .5,
 };
 
