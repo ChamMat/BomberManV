@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import MusicManager from 'components/MusicManager/MusicManager';
 
-import { music, sound, menuOpen } from 'actions/gameSettings.action';
+import { music, sound, menuOpen, changeVolume } from 'actions/gameSettings.action';
 
 
 const mapStateToProps = (state) => {
@@ -25,6 +25,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   setStateMenu: () => {
     dispatch(menuOpen());
+  },
+  setMute: (songType, songVolume) => {
+    dispatch(changeVolume(songType, songVolume));
   }
 });
 

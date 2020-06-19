@@ -12,6 +12,7 @@ const AppStyled = styled.div`
         background-image: url(image/fullScreen.png);
         background-repeat: no-repeat;
         background-size:cover;
+        cursor:pointer;
     }
 
     .fullScreenIsOn{

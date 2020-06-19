@@ -1,32 +1,53 @@
 import styled from 'styled-components';
 
 const MusicManagerStyled = styled.div`
-  position: absolute;
 
-  top: 2vh;
-  left: 2vh;
+  .mute {
+    position: absolute;
+    top: 2vh;
+    left: 15vh;
+    height: 5vh;
+    width: 7vh;
+    background-image: url(image/soundOn.png);
+    background-size:contain;
+    background-repeat: no-repeat;
+    cursor:pointer;
+  }
 
-  height:10vh;
-  width: 10vh;
+  .muteOff {
+    background-image: url(image/soundOff.png);
+  }
 
-  background-color: gray;
-  border-radius: 100%;
+  .musicManagerWrapper{
+    position: absolute;
 
-  .icon{
-    height: 10vh;
+    top: 2vh;
+    left: 2vh;
+
+    height:10vh;
     width: 10vh;
-    cursor: pointer;
-    
+
+    background-color: gray;
+    border-radius: 100%;
+
+    .icon{
+      height: 10vh;
+      width: 10vh;
+      cursor: pointer;
+      
+    }
   }
 
   @media (min-height: 500px) {
-    height:6vh;
-    width: 6vh;
+      .musicManagerWrapper{  
+        height:6vh;
+        width: 6vh;
 
-    .icon{
-      height:6vh;
-      width: 6vh;
-    }
+        .icon{
+          height:6vh;
+          width: 6vh;
+        }
+      }
   }
 `;
 

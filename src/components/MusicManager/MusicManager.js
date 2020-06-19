@@ -12,6 +12,7 @@ const MusicManager = (props) => {
     setStateMenu,
     musicVolume,
     setNewEffectSound,
+    setMute,
   } = props;
 
   const [keyListener, setKeyListerner]= useState(false);
@@ -43,6 +44,15 @@ const MusicManager = (props) => {
     }
 
   }
+
+  const handleMute = () => {
+    if (document.querySelector('.muteOff')) {
+      setMute('volumeMusic', 0.2);
+    }else {
+      setMute('volumeMusic', 0);
+    }
+    document.querySelector('.mute').classList.toggle('muteOff');
+  };
 
   const handleMenuOpen = () => {
     soundClick.volume = .1;
@@ -98,9 +108,10 @@ const MusicManager = (props) => {
 
   return (
     <MusicManagerStyled>
-    <div>
+    <div className="musicManagerWrapper">
       <img className="icon" src="image/gear.png" alt="" onClick={handleMenuOpen} />
     </div>
+    <div className="mute" onClick ={handleMute} />
     </MusicManagerStyled>
   );
 };
