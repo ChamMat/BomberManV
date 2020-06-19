@@ -9,15 +9,26 @@ import AppStyled from './AppStyled';
 
 function App(props) {
   const { setKeyInput } = props;
-
-  const handleTouchStart = (evt) => {
-    setKeyInput(evt.target.name, true);
-  }
-
-  const handleTouchEnd = (evt) => {
-    setKeyInput(evt.target.name, false);
-  }
   
+  
+  const chrome = /Google Inc./;
+  if (chrome.test(navigator.vendor)){
+    
+  }else{
+    
+  }
+
+  const body =  document.querySelector('body');
+
+  const handleFullScreen = () => {
+    if (!document.fullscreenElement){
+      body.requestFullscreen();
+      document.querySelector('.fullScreen').classList.toggle('fullScreenIsOn');
+    }else{
+      document.exitFullscreen();
+      document.querySelector('.fullScreen').classList.toggle('fullScreenIsOn');
+    }
+  };
 
   useEffect(()=>{
     const handleKeyDown = (evt) => {
@@ -36,7 +47,7 @@ function App(props) {
     <AppStyled>
       <div className="App">
         <PreLoader />
-        
+        <div className="fullScreen" onClick={handleFullScreen} />
       </div>
     </AppStyled>
   );

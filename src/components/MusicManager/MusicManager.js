@@ -98,7 +98,9 @@ const MusicManager = (props) => {
 
   return (
     <MusicManagerStyled>
+    <div>
       <img className="icon" src="image/gear.png" alt="" onClick={handleMenuOpen} />
+    </div>
     </MusicManagerStyled>
   );
 };

@@ -76,7 +76,7 @@ const preLoaderReducer = (state = initialState, action = {}) => {
     case END_GAME:
       return{
         ...state,
-        endGame: true,
+        endGame: action.value,
       }
 
       case NEW_GAME:

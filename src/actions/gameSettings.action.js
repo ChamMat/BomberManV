@@ -33,6 +33,7 @@ export const changeVolume = (songType, songVolume) => ({
   songVolume: songVolume,
 })
 
-export const endGame = () => ({
+export const endGame = (value) => ({
   type: END_GAME,
+  value: value,
 })

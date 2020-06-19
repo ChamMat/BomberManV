@@ -126,7 +126,11 @@ const Pvp = (props) => {
 
             majPerso(newGameDatas);
         }else {
-            gameOver();
+            console.log(gameDatas.players);
+            if (gameDatas.players){
+                gameOver(true);
+                return false;
+            }
         }
 
                 
@@ -205,6 +209,7 @@ const Pvp = (props) => {
                 pvpLocalDatas={pvpLocalDatas}
                 setBonusReset={setBonusReset}
                 setGameStyle={setGameStyle}
+                gameOver={gameOver}
             />
         }
         </PvpStyled>

@@ -8,6 +8,7 @@ const GameOver = (props) => {
     pvpLocalDatas,
     setBonusReset,
     setGameStyle,
+    gameOver,
   } = props;
 
   let winner = [];
@@ -34,6 +35,7 @@ const GameOver = (props) => {
   const handleClickRestart = () => {
     soundClick.volume = .1;
     soundClick.play();
+    gameOver(false);
     setBonusReset();
     majPerso({
       players:pvpLocalDatas,

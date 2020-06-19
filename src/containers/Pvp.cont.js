@@ -42,14 +42,11 @@ const mapDispatchToProps = (dispatch) => ({
     setBonusReset: () => {
         dispatch(bonusReset());
     },
-    gameOver: () => {
-        dispatch(endGame());
+    gameOver: (value) => {
+        dispatch(endGame(value));
     },
     setGameStyle: (value) => {
         dispatch(gameStyle(value));
-    },
-    setKeyInput: (key, value) => {
-        dispatch(keyInput(key, value));
     },
 
 });
