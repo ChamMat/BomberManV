@@ -126,7 +126,6 @@ const Pvp = (props) => {
 
             majPerso(newGameDatas);
         }else {
-            console.log(gameDatas.players);
             if (gameDatas.players){
                 gameOver(true);
                 return false;

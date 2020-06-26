@@ -10,6 +10,11 @@ const MenuHomeStyled = styled.div`
   animation-duration: .5s;
   animation-fill-mode:forwards;
 
+  a {
+    text-decoration:underline;
+    margin: 1vh;
+  }
+
   .menuHomeWrapper {
     opacity: 0;
     animation-name: show;
@@ -34,6 +39,13 @@ const MenuHomeStyled = styled.div`
     .gameList{
       height: 7vh;
       width: 75vw;
+    }
+
+    .credit{
+      position: absolute;
+      right: 12vw;
+      bottom: 4vh;
+      padding:1vh;
     }
   }
 
