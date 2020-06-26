@@ -65,7 +65,7 @@ const MenuHome = (props) => {
                 <h2>CREDIT</h2>
                 <ul>
                   <li>
-                    Create by: <a href="http://mathieuchamoulaud.com">Mathieu Chamoulaud</a>
+                    Create by: <a href="http://mathieuchamoulaud.com">Mathieu Chamoulaud (fr)</a>
                   </li>
                   <li>
                    musique: <a href="https://opengameart.org/users/sketchylogic">SketchyLogic</a>
