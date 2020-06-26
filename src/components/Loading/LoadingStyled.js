@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const LoadingStyled = styled.div`
 
     .wrapper {
-        height: 20vh;
+        height: 37vh;
         width: 50vw;
         margin: auto;
         text-align: center; 
@@ -12,6 +12,11 @@ const LoadingStyled = styled.div`
         padding-top: 3vh;
         background: rgba(255,255,255,.5);
         border-radius: 6px;
+
+        p {
+            margin: 3vh;
+        }
+        
     }
 
 `;

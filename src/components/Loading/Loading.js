@@ -10,7 +10,8 @@ const Loading = () => {
   return (
       <LoadingStyled>
           <div className="wrapper">
-              <div>Loading... Please wait</div>
+              <p>Loading... Please wait</p>
+              <p>Use chrome browser for better experience</p>
               <LoaderIcon type={"cylon"} size={documentHeight} />
           </div>
       </LoadingStyled>
