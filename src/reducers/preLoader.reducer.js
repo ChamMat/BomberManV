@@ -8,10 +8,10 @@ import {
   
   // Initial State
   const initialState = {
-    imageLoad: false, //default: false;
-    audioLoad: false, // default: false;
+    imageLoad: true, //default: false;
+    audioLoad: true, // default: false;
     count: 0,
-    gameReady: false, // default: false,
+    gameReady: true, // default: false,
   };
   
   // Reducer

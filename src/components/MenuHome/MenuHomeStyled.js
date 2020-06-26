@@ -47,6 +47,17 @@ const MenuHomeStyled = styled.div`
       bottom: 4vh;
       padding:1vh;
     }
+
+    .howPlay{
+      position: absolute;
+      left: 12vw;
+      bottom: 4vh;
+      padding:1vh;
+    }
+
+    li {
+      margin: 7vh;
+    }
   }
 
   @keyframes resize {

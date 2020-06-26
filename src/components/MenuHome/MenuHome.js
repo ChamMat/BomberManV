@@ -24,6 +24,10 @@ const MenuHome = (props) => {
     setMenu('');
   };
 
+  const handleClickHowPlay = () => {
+    setMenu('howPlay');
+  }
+
     return (
         <MenuHomeStyled>
           { menu === '' &&
@@ -46,6 +50,13 @@ const MenuHome = (props) => {
                 >
                     credits
                 </button>
+
+                <button
+                  className="button howPlay"
+                  onClick={handleClickHowPlay}
+                >
+                    How to play?
+                </button>
             </div>
           }
 
@@ -64,6 +75,33 @@ const MenuHome = (props) => {
                   </li>
                   <li>
                     hero: <a href="https://grafxkid.tumblr.com/">GrafxKid</a>
+                  </li>
+                </ul>
+
+                <button
+                  className="button credit"
+                  onClick={handleClickMenu}
+                >
+                    return
+                </button>
+            </div>
+          }
+
+          { menu === 'howPlay' &&
+            <div className="menuHomeWrapper">
+                <h2>How i play ?</h2>
+                <ul>
+                  <li className="tuto">
+                    You must elimate the other player.
+                  </li>
+                  <li className="tuto">
+                   Player 1: use arrow buttons
+                  </li>
+                  <li className="tuto">
+                   Player 2: use AWDS (qwerty) or QZDS (azerty)
+                  </li>
+                  <li className="tuto">
+                    You can take speed bonus and bomb bonus for be more efficient
                   </li>
                 </ul>
 
